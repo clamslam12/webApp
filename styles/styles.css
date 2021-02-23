@@ -7,9 +7,9 @@
   margin: auto;
 }
 .mainFormSignUp {
-    width: 90%;/* 90% of its container; ie. 90% of the body */
-    margin: auto;
-  }
+  width: 90%; /* 90% of its container; ie. 90% of the body */
+  margin: auto;
+}
 
 body {
   background-color: palevioletred;
@@ -29,7 +29,7 @@ body {
 }
 
 .btnSignUp {
-    width: 100%;/* 100% of its container; ie. 100% of the 90% */
-    height: 50px;
-    margin-bottom: 4px;
-  }
+  width: 100%; /* 100% of its container; ie. 100% of the 90% */
+  height: 50px;
+  margin-bottom: 4px;
+}
