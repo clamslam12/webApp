@@ -3,11 +3,11 @@
 }
 
 .mainForm {
-  width: 400px;
+  width: 300px;
   margin: auto;
 }
 .mainFormSignUp {
-  width: 42%; /* 42% of its container; ie. 90% of the body */
+  width: 42%; /* 42% of its container; ie. 42% of the body */
   margin: auto;
 }
 
@@ -16,7 +16,7 @@ body {
 }
 
 .btnLogin {
-  width: 400px;
+  width: 300px;
   height: 50px;
   margin-bottom: 4px;
 }
