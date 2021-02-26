@@ -1,15 +1,4 @@
 
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
-}
-
-p {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    line-height: 1.7em;
-}
 
 a,
 a:hover,
@@ -25,12 +14,41 @@ a:focus {
     border: none;
     border-radius: 0;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
+    width: 100%; */
 }
 
-.blue {
-    background: #7386D5;
+.rbox {
+    border-radius: 25px;
+    background: #cccecf;
+    height: 40px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.message-box {
+    min-height: 200px;
+}
+
+.message-box2 {
+    min-height: 300px;
+}
+
+.tbox {
+    background: rgb(147, 216, 44);
+    border-radius: 25px;
+    margin-top: 1em;
+    padding: 10px;
+}
+
+#send {
+    margin-top: 12px;
+}
+
+.pink {
+    background-color: palevioletred;
 }
 
 .home-box {
@@ -60,8 +78,8 @@ a:focus {
 }
 
 #sidebar {
-
-    background: #7386D5;
+    /* background: #7386D5; */
+    background-color: palevioletred;
     transition: all 0.1s;
 }
 
@@ -70,6 +88,7 @@ a:focus {
 #sidebar .sidebar-header {
     padding: 20px;
     background: #6d7fcc;
+    background-color: palevioletred;
 }
 
 #sidebar ul.components {
@@ -86,6 +105,7 @@ a:focus {
 #sidebar button {
     color: black;
     background: #6d7fcc;
+    /* background-color: palevioletred; */
     margin-bottom: 5em;
 }
 
@@ -103,6 +123,9 @@ a:focus {
     margin-left: 1.2em;
 }
 
+.right-align {
+    float: right;
+}
 
 
 .name {
@@ -142,6 +165,7 @@ a:focus {
 }
 
 
+
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
@@ -165,6 +189,7 @@ input[type="text"]{
     border: none;
     background: transparent;
     color: #000;
+    width: 100%;
 }
 /* ---------------------------------------------------
     CONTENT STYLE
@@ -172,7 +197,7 @@ input[type="text"]{
 
 #content {
     width: 100%;
-    padding: 20px;
+    /* padding: 20px; */
     min-height: 100vh;
     transition: all 0.3s;
 }
@@ -183,6 +208,12 @@ input[type="text"]{
 
 @media (max-width: 768px) {
     #label{
+        display: none;
+    }
+}
+
+@media (max-width: 936px) {
+    #hidden-text {
         display: none;
     }
 }
