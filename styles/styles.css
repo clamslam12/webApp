@@ -33,3 +33,16 @@ body {
   height: 50px;
   margin-bottom: 4px;
 }
+
+.errorInput {
+  background-color: red;
+}
+
+.errorMessage {
+  color: red;
+  font-size: small;
+}
+
+.logo{
+  width: 200px;
+}
