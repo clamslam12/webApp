@@ -13,6 +13,7 @@ Team Member: Minh Durbin, Long Sen
 Responsibility:
 
 Assignment 2- Part2
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Minh Durbin: signup page form validation and dynamically show response text
 
 Assignment 1
