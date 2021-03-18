@@ -16,6 +16,10 @@ Assignment 2- Part2
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Minh Durbin: signup page form validation and dynamically show response text
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Technologies: Vue.js and Bootstrap.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Summary: Every input text with invalid values will be highlighted in red with an error message. As the user corrects an input, it will appear normal/unhighlighted. If both passwords match but not a valid value, an invalid message will appear. Else, a password does not match message appears.
+
 Assignment 1
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Minh Durbin: signin page, signup page (signin.html, signup.html, styles.css)
