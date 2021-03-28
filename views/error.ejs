@@ -1,0 +1,15 @@
+<% if(errorCode == 404){ %>
+<div class="center">
+  <h1><%= errorCode %>...Oops! Something went wrong</h1>
+</div>
+<div class="center">
+  <img src="./images/404.jpg" alt="" style="width: 450px" />
+</div>
+<% } else { %>
+<div class="center">
+  <h1><%= errorCode %>...Oops! Something went wrong.</h1>
+</div>
+<div class="center">
+  <img src="./images/500.jpg" alt="" style="width: 60%" />
+</div>
+<% } %>
