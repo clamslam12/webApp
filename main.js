@@ -41,6 +41,8 @@ app.get("/signup", usersController.getSignUpPage);
 app.post("/signup", usersController.saveUser);
 app.get("/login", usersController.getSigninPage);
 app.post("/login", usersController.authenticateUser);
+app.get("/home", homeController.getHomePage);
+app.get("/message", homeController.getMessagePage);
 app.get("/", homeController.getWelcomePage);
 
 //Error handling middlewares

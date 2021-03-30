@@ -1,4 +1,9 @@
 
+body{
+    /* color:#fff; */
+    background-color: #404040;
+    color: #ffffffbe;
+}
 
 a,
 a:hover,
@@ -10,7 +15,7 @@ a:focus {
 
 .box {
     padding: 10px 10px;
-    background: #fff;
+    background: #15202B;
     border: none;
     border-radius: 0;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
@@ -21,7 +26,7 @@ a:focus {
 
 .rbox {
     border-radius: 25px;
-    background: #cccecf;
+    background: #15202b63;    
     height: 40px;
     width: 100%;
     padding: 10px;
@@ -37,7 +42,7 @@ a:focus {
 }
 
 .tbox {
-    background: rgb(147, 216, 44);
+    background: rgb(101, 146, 34);
     border-radius: 25px;
     margin-top: 1em;
     padding: 10px;
@@ -48,7 +53,7 @@ a:focus {
 }
 
 .pink {
-    background-color: palevioletred;
+    background-color: #404040;
 }
 
 .home-box {
@@ -77,41 +82,46 @@ a:focus {
     align-items: normal;
 }
 
-#sidebar {
+.sidebar {
     /* background: #7386D5; */
-    background-color: palevioletred;
+    background-color: #15202B;
     transition: all 0.1s;
 }
 
 
-
-#sidebar .sidebar-header {
+.sidebar .sidebar-header {
     padding: 20px;
     background: #6d7fcc;
-    background-color: palevioletred;
+    background-color:#15202B;
 }
 
-#sidebar ul.components {
+.sidebar ul.components {
     padding: 20px 0;
     border-bottom: 1px solid #47748b;
 }
 
-#sidebar ul p {
+/* .sidebar ul p {
     /* color: #fff; */
-    color: black;
-    padding-left: 10px;
+    /* color: #ffffffbe; */
+    /* padding-left: 10px; */
+    /* display: flex;
+    float: left; */
+
+
+.profile {
+    display: flex;
 }
 
-#sidebar button {
+.button {
     color: black;
     background: #6d7fcc;
     /* background-color: palevioletred; */
     margin-bottom: 5em;
 }
 
-#sidebar ul li p:hover {
+.sidebar ul li p:hover {
     color: #7386D5;
-    background: #fff;
+    /* background: #fff; */
 }
 
 .left-align {
@@ -127,6 +137,17 @@ a:focus {
     float: right;
 }
 
+.header-font {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: #ffffffbe;
+}
+
+h5{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: #7386D5;
+}
 
 .name {
     font-weight: 500;
@@ -158,7 +179,7 @@ a:focus {
     padding-right: 10px;
 }
 
-#sidebar #img {
+.sidebar #img {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -188,7 +209,7 @@ a.article:hover {
 input[type="text"]{
     border: none;
     background: transparent;
-    color: #000;
+    color: #ffffffbe;
     width: 100%;
 }
 /* ---------------------------------------------------
@@ -207,7 +228,11 @@ input[type="text"]{
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
-    #label{
+    /* #label{
+        display: none;
+        color: #ffffff;
+    } */
+    .hiddenBar{
         display: none;
     }
 }

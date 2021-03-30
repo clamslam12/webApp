@@ -5,5 +5,13 @@ exports.logRequestPaths = (req, res, next) => {
   next();
 };
 exports.getWelcomePage = (req, res) => {
-  res.render("welcome");
+  res.render("welcome" , {layout: 'layout'});
 };
+
+exports.getHomePage = (req, res) => {
+  res.render("home", {layout: 'mainLayout'})
+}
+
+exports.getMessagePage = (req, res) => {
+  res.render("message", {layout: 'mainLayout'})
+}

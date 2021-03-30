@@ -39,10 +39,10 @@ exports.saveUser = (req, res) => {
 };
 
 exports.getSignUpPage = (req, res) => {
-  res.render("signup", { noError: true });
+  res.render("signup", { layout: 'layout', noError: true });
 };
 exports.getSigninPage = (req, res) => {
-  res.render("login", { loginOk: true });
+  res.render("login", { layout: 'layout', loginOk: true });
 };
 exports.authenticateUser = (req, res) => {
   //resolves with object if found, else resolves with null
