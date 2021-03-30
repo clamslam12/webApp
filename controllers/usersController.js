@@ -54,7 +54,7 @@ exports.authenticateUser = (req, res) => {
     .then((users) => {
       console.log("result", users);
       if (users != null) {
-        res.render("success");
+        res.render("home", {layout: 'mainLayout', user: users});
       } else {
         res.render("login", {
           loginOk: false,
