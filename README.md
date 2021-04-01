@@ -14,7 +14,7 @@ Responsibility:
 
 Assignment 3 - All requirements working.
 
-Directions: Database is locally hosted at mongodb://localhost:27017/iMedia | Database name is iMedia, collection is users.
+Directions: Database is locally hosted at mongodb://localhost:27017/iMedia . You can download MongoDB Compass and connect to it. The database name is "iMedia" and the collection is "users".
 
 Since I, Minh Durbin, was the most familiar with the signup/signin, I added MVC architecture(controllers, models, public, views), main.js, seed.js). Long Sen worked on home.ejs, messages.ejs, modified existing controllers to include separate layouts for signup/signin page and the home/messages page and changed background color.
 
