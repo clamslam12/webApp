@@ -10,6 +10,24 @@ const User = require("../models/user");
 
 //save user to database
 exports.saveUser = (req, res) => {
+  //server-side validation
+  if (
+    req.body.firstName == "" ||
+    req.body.lastName == "" ||
+    req.body.dob == "" ||
+    req.body.userName == "" ||
+    req.body.password == "" ||
+    req.body.confirmPassword == "" ||
+    req.body.password != req.body.confirmPassword
+  ) {
+    res.render("signup", {
+      noError: true,
+      formValidationOk: false,
+      invalidMessage:
+        "Must have valid first/last name, DoB, username, and matching passwords. Please correct and resubmit",
+    });
+    return;
+  }
   //instantiate an object of type User
   let newUser = new User({
     //we can initialize the values with req.body.xxx because of using express.json() in main.js
@@ -34,15 +52,23 @@ exports.saveUser = (req, res) => {
       res.render("success");
     })
     .catch((error) => {
-      res.render("signup", { noError: false, errorM: error });
+      res.render("signup", {
+        noError: false,
+        errorM: error,
+        formValidationOk: true,
+      });
     });
 };
 
 exports.getSignUpPage = (req, res) => {
-  res.render("signup", { layout: 'layout', noError: true });
+  res.render("signup", {
+    layout: "layout",
+    noError: true,
+    formValidationOk: true,
+  });
 };
 exports.getSigninPage = (req, res) => {
-  res.render("login", { layout: 'layout', loginOk: true });
+  res.render("login", { layout: "layout", loginOk: true });
 };
 exports.authenticateUser = (req, res) => {
   //resolves with object if found, else resolves with null
@@ -54,7 +80,7 @@ exports.authenticateUser = (req, res) => {
     .then((users) => {
       console.log("result", users);
       if (users != null) {
-        res.render("home", {layout: 'mainLayout', user: users});
+        res.render("home", { layout: "mainLayout", user: users });
       } else {
         res.render("login", {
           loginOk: false,

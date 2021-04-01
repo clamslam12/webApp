@@ -8,7 +8,9 @@
     <div class="mb-4">
       <h1>Sign up to iMedia</h1>
     </div>
-    <% if(noError == false){ %>
+    <% if(formValidationOk == false){ %>
+    <div class="errorMessage"><%= invalidMessage %></div>
+    <% } %> <% if(noError == false){ %>
     <div class="errorMessage"><%= errorM %></div>
     <% } %>
     <div class="row">
