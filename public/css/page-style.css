@@ -48,6 +48,10 @@ a:focus {
     padding: 10px;
 }
 
+.fullName {
+    margin-top: -20px;
+}
+
 #send {
     margin-top: 12px;
 }

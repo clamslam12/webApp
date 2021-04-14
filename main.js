@@ -1,10 +1,17 @@
 const express = require("express"),
   app = express(),
+  router = express.Router(),
   layouts = require("express-ejs-layouts"),
   mongoose = require("mongoose"),
+  methodOverride = require("method-override"),
+  expressSession = require("express-session"),
+  cookieParser = require("cookie-parser"),
+  connectFlash = require("connect-flash"),
+  expressValidator = require("express-validator"),
+  passport = require("passport"),
+  errorController = require("./controllers/errorController"),
   homeController = require("./controllers/homeController"),
   usersController = require("./controllers/usersController"),
-  errorController = require("./controllers/errorController"),
   User = require("./models/user");
 
 //using Promises with Mongoose
@@ -25,31 +32,66 @@ app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
 
 //Middlewares; middlewares are invoked in the order they are defined
-app.use(layouts);
+router.use(layouts);
 //makes public folder static (serve static files); Dont have to include /public when referencing css/js/images
-app.use(express.static("public"));
-app.use(
+router.use(express.static("public"));
+router.use(
   express.urlencoded({
     extended: false,
   })
 );
-app.use(express.json());
-app.use(homeController.logRequestPaths);
+router.use(express.json());
+
+// router.use(
+//   methodOverride("_method", {
+//     methods: ["POST", "GET"]
+//   })
+// );
+
+// router.use(cookieParser("secret_passcode"));
+// router.use(
+//   expressSession({
+//     secret: "secret_passcode",
+//     cookie: {
+//       maxAge: 4000000
+//     },
+//     resave: false,
+//     saveUninitialized: false
+//   })
+// );
+
+// router.use(passport.initialize());
+// router.use(passport.session());
+// passport.use(User.createStrategy());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
+// router.use(connectFlash());
+
+// router.use((req, res, next) => {
+  // res.locals.loggedIn = req.isAuthenticated();
+  // res.locals.currentUser = req.user;
+  // res.locals.flashMessages = req.flash();
+  // next();
+// });
+
+
+router.use(homeController.logRequestPaths);
 
 //Routers and their middlewares (their callback functions)
-app.get("/signup", usersController.getSignUpPage);
-app.post("/signup", usersController.saveUser);
-app.get("/login", usersController.getSigninPage);
-app.post("/login", usersController.authenticateUser);
-app.get("/home", homeController.getHomePage);
-app.get("/message", homeController.getMessagePage);
-app.get("/", homeController.getWelcomePage);
+router.get("/signup", usersController.getSignUpPage);
+router.post("/signup", usersController.saveUser);
+router.get("/login", usersController.getSigninPage);
+router.post("/login", usersController.authenticateUser);
+router.get("/", homeController.index, homeController.indexView);
+// router.get("/message", homeController.getMessagePage);
+// router.get("/", homeController.getWelcomePage);
 
 //Error handling middlewares
-app.use(errorController.logErrors);
-app.use(errorController.pageNotFound);
-app.use(errorController.serverError);
+router.use(errorController.logErrors);
+router.use(errorController.pageNotFound);
+router.use(errorController.serverError);
 
+app.use("/", router);
 //starting server
 app.listen(app.get("port"), () => {
   console.log(`Server is running on port ${app.get("port")}`);

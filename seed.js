@@ -2,13 +2,58 @@
 
 const { Promise } = require("bluebird");
 const mongoose = require("mongoose"),
-  User = require("./models/user");
+  User = require("./models/user"),
+  Post = require("./models/post");
 
 //initiate connection
 mongoose.connect("mongodb://localhost:27017/iMedia", {
   useNewUrlParser: true,
 });
 mongoose.connection;
+
+let posts = [{
+  post: "This is test post",
+  userEmail: "jon@wexler.com",
+  userName: "jwexler",
+  fullName: "test"
+},{
+  post: "A new post",
+  userEmail: "charlie@angel.com",
+  userName: "cangel", 
+  fullName: "test"
+},
+{
+  post: "A new post",
+  userEmail: "charlie@angel.com",
+  userName: "cangel", 
+  fullName: "test"
+
+},{
+  post: "A new post",
+  userEmail: "charlie@angel.com",
+  userName: "cangel", 
+  fullName: "test"
+
+},{
+  post: "A new post",
+  userEmail: "charlie@angel.com",
+  userName: "cangel", 
+  fullName: "test"
+
+},{
+  post: "A new post",
+  userEmail: "charlie@angel.com",
+  userName: "cangel", 
+  fullName: "test"
+
+},{
+  post: "A new post",
+  userEmail: "charlie@angel.com",
+  userName: "cangel", 
+  fullName: "test"
+
+}
+]
 
 let users = [
   {
@@ -81,6 +126,17 @@ users.forEach((u) => {
       securityResponse: u.securityResponse,
       bio: u.bio,
     })
+  );
+});
+
+posts.forEach((post) => {
+  commands.push(
+  Post.create({
+    post: post.post,
+    userEmail: post.userEmail,
+    userName: post.userName,
+    fullName: post.fullName
+  })
   );
 });
 

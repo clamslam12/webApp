@@ -1,8 +1,10 @@
 "use strict";
 
-const mongoose = require("mongoose");
-//define a schema
-const userSchema = mongoose.Schema({
+const mongoose = require("mongoose"),
+
+  {Schema} = mongoose,
+  passportLocalMongoose = require("passport-local-mongoose"),
+  userSchema = new Schema({
   firstName: String,
   lastName: String,
   location: String,
@@ -15,6 +17,11 @@ const userSchema = mongoose.Schema({
   securityQuestion: String,
   securityResponse: String,
   bio: String,
+  posts: [{ type: Schema.Types.ObjectId, ref:"Post"}],
 });
+
+userSchema.virtual("fullName").get(function() {
+  return `${this.name.first} + ${this.name.last}`;
+})
 //aply schema to model "User
 module.exports = mongoose.model("User", userSchema);
