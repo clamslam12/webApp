@@ -87,10 +87,20 @@ router.post(
   usersController.redirectView
 );
 router.get("/login", usersController.getSigninPage);
-router.post("/login", usersController.authenticate, usersController.redirectView);
+router.post(
+  "/login",
+  usersController.authenticate,
+  usersController.redirectView
+);
 router.get("/home", homeController.index, homeController.indexView);
 // router.get("/message", homeController.getMessagePage);
-router.get("/", homeController.index, homeController.indexView);
+router.get(
+  "/",
+  homeController.checkSession,
+  homeController.index,
+  homeController.indexView
+);
+router.get("/about", homeController.getAboutPage);
 
 //Error handling middlewares
 router.use(errorController.logErrors);
