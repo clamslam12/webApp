@@ -23,7 +23,7 @@ module.exports = {
     if (userLoggedIn) {
       return next();
     } else {
-      res.redirect("/login");
+      res.redirect("/about");
     }
   },
   index: (req, res, next) => {
