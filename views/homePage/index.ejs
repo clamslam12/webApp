@@ -1,5 +1,6 @@
 <div id="content" class="col-sm-8">
     <div class="box home-box header-font">Home </div>
+    <% if(user) { %>
     <div class="line"></div>
     <div class="box">
         <form action="post/create" method="POST">
@@ -17,6 +18,7 @@
         </form>
     </div>
     <div class="margin-bottom"></div>
+    <% } %>
 
     <!-- <div class="box"> -->
         <% posts.forEach(post=> { %>

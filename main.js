@@ -87,7 +87,7 @@ router.post(
   usersController.redirectView
 );
 router.get("/login", usersController.getSigninPage);
-router.post("/login", usersController.authenticate);
+router.post("/login", usersController.authenticate, usersController.redirectView);
 router.get("/home", homeController.index, homeController.indexView);
 // router.get("/message", homeController.getMessagePage);
 router.get("/", homeController.index, homeController.indexView);

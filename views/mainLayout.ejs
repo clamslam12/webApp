@@ -83,7 +83,10 @@
                 <li>
                     <div class="left-align2">
                         <img src="images/self.png" class="big-symbol">
+                    <% if(user) {%>
                     <b class="header-font">
+                        <%= user.userName %>
+                        <%}%>
                     </b>
                     </div>
                 </li>
