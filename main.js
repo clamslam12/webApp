@@ -1,3 +1,5 @@
+"use strict";
+
 const express = require("express"),
   app = express(),
   router = express.Router(),
@@ -30,61 +32,65 @@ db.once("open", () => {
 });
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
-
-//Middlewares; middlewares are invoked in the order they are defined
-router.use(layouts);
-//makes public folder static (serve static files); Dont have to include /public when referencing css/js/images
-router.use(express.static("public"));
-router.use(
+app.use(
   express.urlencoded({
     extended: false,
   })
 );
+
+//Middlewares; middlewares are invoked in the order they are defined
+router.use(methodOverride("_method", { methods: ["POST", "GET"] }));
+router.use(layouts);
+//makes public folder static (serve static files); Dont have to include /public when referencing css/js/images
+router.use(express.static("public"));
 router.use(express.json());
 
-// router.use(
-//   methodOverride("_method", {
-//     methods: ["POST", "GET"]
-//   })
-// );
+//use session management through cookies
+router.use(cookieParser("iMedia_passcode"));
+router.use(
+  expressSession({
+    secret: "iMedia_passcode",
+    cookie: {
+      maxAge: 360000,
+    },
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+//express validator setup
+router.use(expressValidator());
+//connect flash messages setup
+router.use(connectFlash());
+//Passport setup
+router.use(passport.initialize());
+router.use(passport.session());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-// router.use(cookieParser("secret_passcode"));
-// router.use(
-//   expressSession({
-//     secret: "secret_passcode",
-//     cookie: {
-//       maxAge: 4000000
-//     },
-//     resave: false,
-//     saveUninitialized: false
-//   })
-// );
-
-// router.use(passport.initialize());
-// router.use(passport.session());
-// passport.use(User.createStrategy());
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
-// router.use(connectFlash());
-
-// router.use((req, res, next) => {
-  // res.locals.loggedIn = req.isAuthenticated();
-  // res.locals.currentUser = req.user;
-  // res.locals.flashMessages = req.flash();
-  // next();
-// });
-
-
+//save flash messages from req.flash(), set loggedIn flag/var, and set current user
+//used on every request
+router.use((req, res, next) => {
+  res.locals.flashMessages = req.flash(); //key/value pairs
+  res.locals.loggedIn = req.isAuthenticated();
+  res.locals.user = req.user;
+  next();
+});
 router.use(homeController.logRequestPaths);
 
 //Routers and their middlewares (their callback functions)
-router.get("/signup", usersController.getSignUpPage);
-router.post("/signup", usersController.saveUser);
+router.get("/users/new", usersController.getSignUpPage);
+router.post(
+  "/users/create",
+  usersController.validate,
+  usersController.create,
+  usersController.redirectView
+);
 router.get("/login", usersController.getSigninPage);
-router.post("/login", usersController.authenticateUser);
-router.get("/", homeController.index, homeController.indexView);
+router.post("/login", usersController.authenticate);
+router.get("/home", homeController.index, homeController.indexView);
 // router.get("/message", homeController.getMessagePage);
-// router.get("/", homeController.getWelcomePage);
+router.get("/", homeController.index, homeController.indexView);
 
 //Error handling middlewares
 router.use(errorController.logErrors);

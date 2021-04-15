@@ -1,23 +1,61 @@
 "use strict";
 
 const mongoose = require("mongoose"),
-
-  {Schema} = mongoose,
   passportLocalMongoose = require("passport-local-mongoose"),
-  userSchema = new Schema({
-  firstName: String,
-  lastName: String,
-  location: String,
-  gender: String,
-  dateOfBirth: String,
-  email: String,
-  userName: String,
-  password: String,
-  confirmPassword: String,
-  securityQuestion: String,
-  securityResponse: String,
-  bio: String,
-  posts: [{ type: Schema.Types.ObjectId, ref:"Post"}],
+  { Schema } = mongoose;
+//define a schema
+const userSchema = new Schema(
+  {
+    name: {
+      firstName: {
+        type: String,
+        required: true,
+      },
+      lastName: {
+        type: String,
+        required: true,
+      },
+    },
+    location: {
+      type: String,
+    },
+    gender: {
+      type: String,
+    },
+    dateOfBirth: {
+      type: Date,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+    },
+    userName: {
+      type: String,
+      required: true,
+    },
+    //dont need password due to using Passport
+    securityQuestion: {
+      type: String,
+    },
+    securityResponse: {
+      type: String,
+    },
+    bio: {
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
+//virtual methods are computed; not save on database
+userSchema.virtual("fullName").get(function () {
+  return `${this.name.firstName} ${this.name.lastName}`;
+});
+//causes email to be unique; passport uses this field to authenticate 
+userSchema.plugin(passportLocalMongoose, {
+  usernameField: "email",
 });
 
 userSchema.virtual("fullName").get(function() {

@@ -1,5 +1,20 @@
 "use strict";
 
+// module.exports = {
+//   logRequestPaths: (req, res, next) => {
+//     console.log(`request made to: ${req.url}`);
+//     next();
+//   },
+//   getWelcomePage: (req, res) => {
+//     res.render("welcome", { layout: "layout" });
+//   },
+//   getHomePage: (req, res) => {
+//     res.render("homePage/index", { layout: "mainLayout" });
+//   },
+//   getMessagePage: (req, res) => {
+//     res.render("message", { layout: "mainLayout" });
+//   },
+// };
 const Post = require("../models/post");
 
 module.exports = {
@@ -21,19 +36,3 @@ module.exports = {
     next();
   }
 }
-
-// exports.logRequestPaths = (req, res, next) => {
-//   console.log(`request made to: ${req.url}`);
-//   next();
-// };
-// exports.getWelcomePage = (req, res) => {
-//   res.render("welcome" , {layout: 'layout'});
-// };
-
-// exports.getHomePage = (req, res) => {
-//   res.render("home", {layout: 'mainLayout'})
-// }
-
-// exports.getMessagePage = (req, res) => {
-//   res.render("message", {layout: 'mainLayout'})
-// }

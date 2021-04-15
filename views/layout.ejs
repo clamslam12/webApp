@@ -16,7 +16,7 @@
       crossorigin="anonymous"
     />
     <!-- My own CSS -->
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
     <!-- VueJS CDN -->
     <script src="https://unpkg.com/vue@next"></script>
     <title>Signup</title>
@@ -26,7 +26,7 @@
       <nav class="navbar navbar-expand-lg bg-light navbar-light">
         <!-- Brand -->
         <a class="navbar-brand" href="http://localhost:3000/">
-          <img src="./images/imgae.png" alt="" class="logo" />
+          <img src="../images/imgae.png" alt="" class="logo" />
         </a>
 
         <!-- Toggler/collapsibe Button -->
@@ -43,20 +43,40 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost:3000/">Welcome</a>
+              <a class="nav-link" href="/">Welcome</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost:3000/signup"
-                >Sign Up</a
-              >
+              <a class="nav-link" href="/users/new">Sign Up</a>
             </li>
+            <% if(loggedIn){ %>
+              <li class="nav-item">
+                <a class="nav-link" href="/home">Home</a>
+              </li>
+           <% } else { %>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost:3000/login">Log In</a>
+              <a class="nav-link" href="/login">Log In</a>
             </li>
+          <% } %>
           </ul>
         </div>
       </nav>
     </header>
+    <% if(loggedIn){ %>
+      <div>Logged in as <span>user.userName</span></div>
+   <% } %>
+      <% if(flashMessages){ %>
+        <% if(flashMessages.success){ %>
+          <div class="flash">
+            <%= flashMessages.success %>
+          </div>
+       <% } else if(flashMessages.error){ %>
+        <div class="flashError">
+          <%= flashMessages.error %>
+        </div>
+       <% } %>
+     <% } %>
+    
+    
 
     <%- body %>
 
@@ -82,7 +102,7 @@
       crossorigin="anonymous"
     ></script>
     <!-- Importing my own scripts-->
-    <script src="./js/vue.js"></script>
+    <script src="../js/vue.js"></script>
     <script>
       const mountedApp = app.mount("#app");
     </script>
