@@ -53,9 +53,9 @@ const userSchema = new Schema(
 userSchema.virtual("fullName").get(function () {
   return `${this.name.firstName} ${this.name.lastName}`;
 });
-//causes userName to be unique
+//causes email to be unique; passport uses this field to authenticate 
 userSchema.plugin(passportLocalMongoose, {
-  usernameField: "userName",
+  usernameField: "email",
 });
 //aply schema to model "User
 module.exports = mongoose.model("User", userSchema);
