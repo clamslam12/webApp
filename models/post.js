@@ -20,7 +20,7 @@ const mongoose = require("mongoose"),
         },
         fullName: {
             type: String,
-            // required: true
+            required: true
         }
     },
         {

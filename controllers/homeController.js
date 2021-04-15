@@ -16,6 +16,7 @@
 //   },
 // };
 const Post = require("../models/post");
+const User = require("../models/user")
 
 module.exports = {
   checkSession: (req, res, next) => {
@@ -46,4 +47,25 @@ module.exports = {
   getAboutPage: (req, res, next) => {
     res.render("about", { layout: "layout" });
   },
+  createPost: (req, res, next) => {
+    // let user = req.locals.user;
+    // console.log(`User ${req.locals.user.userEmail}`)
+    let newPost = {
+        post: req.body.newPost,
+        userName: req.user.userName,
+        userEmail: req.user.email,
+        fullName: req.user.fullName
+      };
+    Post.create(newPost)
+      .then(() => {
+        // res.locals.redirect = "/home";
+        console.log(`I'm here`);
+        next();
+      })
+      .catch(error => {
+        console.log(`not here`);
+        console.log(`Error create new post: ${error.message}`);
+      });
+
+    }
 };
