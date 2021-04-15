@@ -6,7 +6,12 @@ module.exports = {
     next();
   },
   getWelcomePage: (req, res) => {
-    res.render("welcome", { layout: "layout" });
+    let userLoggedIn = res.locals.loggedIn;
+    if (userLoggedIn) {
+      res.redirect("/home");
+    } else {
+      res.render("welcome", { layout: "layout" });
+    }
   },
   getHomePage: (req, res) => {
     res.render("home", { layout: "mainLayout" });
