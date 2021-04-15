@@ -13,7 +13,7 @@
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="./css/page-style.css">
-
+    <script src="https://unpkg.com/vue@next"></script>
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
         integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
@@ -80,200 +80,16 @@
                 <li>
                     <button type="button" class="btn button col-sm-12">Tweet</button>
                 </li>
-
                 <li>
                     <div class="left-align2">
-                        <img src="images/self.png" class="symbol">
-                    <b>Long Sen</b>
+                        <img src="images/self.png" class="big-symbol">
+                    <b class="header-font">
+                        <%= user.userName %>
+                    </b>
                     </div>
                 </li>
             </ul>
         </div>
-        <!-- Page Content  -->
-        <!-- <div id="content" class="col-sm-8">
-            <div class="box home-box">Home </div>
-            <div class="line"></div>
-            <div class="box">
-                <div class="form-group row">
-                    <div class=col-sm-1>
-                        <img src="images/self.png" class="big-symbol">
-                    </div>
-                    <div class=col-sm-8>
-                        <input type="text" value="What is happening?">
-                    </div>
-                    <div class=col-sm-2>
-                        <button type="button" class="btn btn-primary">Tweet</button>
-                    </div>
-                </div>
-            </div>
-            <div class="margin-bottom"></div>
-
-            <div class="box">
-                <div class="form-group row">
-                    <div class="col-sm-1 col-md-1">
-                        <img src="images/self.png" class="big-symbol">
-                    </div>
-                    <div class="col-sm-10 col-md-10">
-                        <p class="name">Elon Musk</p>
-                        <p class=" ">Literally</p>
-                        <img src="images/musk.jpg" class="resize-image">
-                        <div class="form-group row">
-                            <div class="col-sm-1">
-                                <img src="images/comment.png" class="symbol">
-                            </div>
-                            <div class="col-sm-2">
-                                <p>890</p>
-                            </div>
-                            <div class="col-sm-1">
-                                <img src="images/retweet.png" class="symbol2">
-                            </div>
-                            <div class="col-sm-2">
-                                <p>1.4k</p>
-                            </div>
-                            <div class="col-sm-1">
-                                <img src="images/love.png" class="symbol">
-                            </div>
-                            <div class="col-sm-2">
-                                <p>2k2</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="line"></div>
-            <div class="box">
-                <div class="form-group row">
-                    <div class="col-sm-1 col-md-1">
-                        <img src="images/self.png" class="big-symbol">
-                    </div>
-                    <div class="col-sm-10 col-md-10">
-                        <p class="name  ">Reuters</p>
-                        <p class=" ">A wild and ailing sheep found in a forest in Australia, named Baarack by
-                            rescuers, has yielded a fleece weighing more than 35 kilograms - nearly half the weight of
-                            an
-                            adult kangaroo - after being shorn for the first time in years https://reut.rs/3utUJnK</p>
-                        <div class="form-group row">
-                            <div class="col-sm-1">
-                                <img src="images/comment.png" class="symbol">
-                            </div>
-                            <div class="col-sm-2">
-                                <p>890</p>
-                            </div>
-                            <div class="col-sm-1">
-                                <img src="images/retweet.png" class="symbol2">
-                            </div>
-                            <div class="col-sm-2">
-                                <p>1.4k</p>
-                            </div>
-                            <div class="col-sm-1">
-                                <img src="images/love.png" class="symbol">
-                            </div>
-                            <div class="col-sm-2">
-                                <p>2k2</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="line"></div>
-            <div class="box">
-                <div class="form-group row">
-                    <div class="col-sm-1">
-                        <img src="images/self.png" class="big-symbol">
-                    </div>
-                    <div class="col-sm-10">
-                        <p class="name  ">Forbes</p>
-                        <p class=" ">Apple's Massive Iphone 13 Upgrades Suddenlt Confirmed</p>
-                        <img src="images/iphone.jpg" class="resize-image">
-                        <div class="form-group row">
-                            <div class="col-sm-1">
-                                <img src="images/comment.png" class="symbol">
-                            </div>
-                            <div class="col-sm-2">
-                                <p>890</p>
-                            </div>
-                            <div class="col-sm-1">
-                                <img src="images/retweet.png" class="symbol2">
-                            </div>
-                            <div class="col-sm-2">
-                                <p>1.4k</p>
-                            </div>
-                            <div class="col-sm-1">
-                                <img src="images/love.png" class="symbol">
-                            </div>
-                            <div class="col-sm-2">
-                                <p>2k2</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="line"></div>
-            <div class="box">
-                <div class="form-group row">
-                    <div class="col-sm-1">
-                        <img src="images/self.png" class="big-symbol">
-                    </div>
-                    <div class="col-sm-10">
-                        <p class="name  ">MacRumors.com</p>
-                        <p class=" ">iPhone 13 Lineup Expected to Use Qualcomm’s Snapdragon X60 Modem With
-                            Several
-                            5G Improvements https://macrumors.com/2021/02/24/iphone-13-snapdragon-x60-5g-modem/… by
-                            @rsgn</p>
-                        <img src="images/iphone2.jpg" class="resize-image">
-                        <div class="form-group row">
-                            <div class="col-sm-1">
-                                <img src="images/comment.png" class="symbol">
-                            </div>
-                            <div class="col-sm-2">
-                                <p>890</p>
-                            </div>
-                            <div class="col-sm-1">
-                                <img src="images/retweet.png" class="symbol2">
-                            </div>
-                            <div class="col-sm-2">
-                                <p>1.4k</p>
-                            </div>
-                            <div class="col-sm-1">
-                                <img src="images/love.png" class="symbol">
-                            </div>
-                            <div class="col-sm-2">
-                                <p>2k2</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div id="sidebar" class="col-sm-2">
-            <div class="box home-box pink">What's happening </div>
-            <div class="line"></div>
-            <div class="box pink">
-                <div class="name">
-                        <a href="https://www.latimes.com/entertainment-arts/story/2021-02-23/shailene-woodley-aaron-rodgers-engaged-jimmy-fallon"><h5>LAT Entertainment</h5>
-                            Shailene Woodley opens up about engagement to Aaron Rodgers</a>
-                </div>
-            </div>
-            <div class="line"></div>
-            <div class="box pink">
-                <div class="name">
-                    <a href="https://www.wsj.com/articles/pandemic-loneliness-is-hitting-young-adults-especially-hard-11614104792"><h5>The Wall Street Journal
-                        </h5>Pandemic loneliness is hitting young adults especially hard</a>
-                </div>
-            </div>
-            <div class="line"></div>
-            <div class="box pink">
-                <div class="name">
-                    <a href="https://www.buzzfeed.com/jenniferabidor/elizabeth-olsen-mary-kate-ashley"><h5>BuzzFeed</h5>
-                        People Don't Know Elizabeth Olsen Is Related To Mary-Kate and Ashley</a>
-                </div>
-            </div>
-        </div> -->
         <%- body %>
 
         <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -289,7 +105,10 @@
             integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
             crossorigin="anonymous"></script>
 
-
+            <script src="./js/vue.js"></script>
+            <script>
+              const mountedApp = app.mount("#app");
+            </script>
 </body>
 
 </html>
