@@ -1,19 +1,13 @@
 <div id="app">
   <form
-    action="/signup"
+    action="/users/create"
     class="mainFormSignUp"
     v-on:submit="validateForm"
-    method="post"
+    method="POST"
   >
     <div class="mb-4">
       <h1>Sign up to iMedia</h1>
     </div>
-    <% if(formValidationOk == false){ %>
-    <div class="errorMessage"><%= invalidMessage %></div>
-    <% } %> 
-    <% if(noError == false){ %>
-    <div class="errorMessage"><%= errorM %></div>
-    <% } %>
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">

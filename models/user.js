@@ -30,6 +30,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
+      lowercase: true,
     },
     userName: {
       type: String,
@@ -52,6 +53,7 @@ const userSchema = new Schema(
 userSchema.virtual("fullName").get(function () {
   return `${this.name.firstName} ${this.name.lastName}`;
 });
+//causes userName to be unique
 userSchema.plugin(passportLocalMongoose, {
   usernameField: "userName",
 });

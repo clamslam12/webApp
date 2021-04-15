@@ -10,7 +10,7 @@
   width: 42%; /* 42% of its container; ie. 42% of the body */
   margin: auto;
 }
-.center{
+.center {
   display: flex;
   justify-content: center;
 }
@@ -47,6 +47,29 @@ body {
   font-size: small;
 }
 
-.logo{
+.logo {
   width: 200px;
 }
+
+.flash {
+  background: rgba(193, 255, 193, 0.7);
+  color: #625a56;
+  width: 100%;
+  text-align: center;
+  padding: 10px 30px;
+  position: absolute;
+  top: 90px;
+  z-index: 2;
+}
+
+.flashError{
+  background: rgba(255, 205, 193, 0.7);
+  color: #625a56;
+  width: 100%;
+  text-align: center;
+  padding: 10px 30px;
+  position: absolute;
+  top: 90px;
+  z-index: 2;
+}
+
