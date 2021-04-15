@@ -78,7 +78,12 @@ router.use(homeController.logRequestPaths);
 
 //Routers and their middlewares (their callback functions)
 router.get("/users/new", usersController.getSignUpPage);
-router.post("/users/create", usersController.validate, usersController.create, usersController.redirectView);
+router.post(
+  "/users/create",
+  usersController.validate,
+  usersController.create,
+  usersController.redirectView
+);
 router.get("/login", usersController.getSigninPage);
 router.post("/login", usersController.authenticate);
 router.get("/home", homeController.getHomePage);

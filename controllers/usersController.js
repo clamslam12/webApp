@@ -20,7 +20,6 @@ const getUserParams = (body) => {
     email: body.email,
     userName: body.userName,
     password: body.password,
-    confirmPassword: body.confirmPassword,
     securityQuestion: body.securityQuestion,
     securityResponse: body.securityResponse,
     bio: body.bio,
