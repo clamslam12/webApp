@@ -22,7 +22,7 @@ Long Sen: I'm responseible for home page feutures:
         None-logined user can only see all posts in home page, or login at home page.
         Logined users can post and delete their own posts, see totals number of posts.
         Logined users can click on others to visit other home pages. Then can follow/unfollow others.
-        Logined users can click profile tab to total posts, total following.
+        Logined users can click profile tab to total posts, total following and bio.
         Explore, Notifications, Message, and More tabs do not have any features now.
 
 Assignment 3 - All requirements working.
