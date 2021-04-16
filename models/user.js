@@ -56,7 +56,7 @@ const userSchema = new Schema(
     //   default: 0,
     // },
     following: [],
-    follower: [],
+    // follower: [],
     numberOfPosts: {
       type: Number,
       default: 0
@@ -73,9 +73,9 @@ userSchema.virtual("numOfFollowing").get(function () {
   return this.following.length;
 });
 
-userSchema.virtual("numOfFollower").get(function () {
-  return this.follower.length;
-});
+// userSchema.virtual("numOfFollower").get(function () {
+//   return this.follower.length;
+// });
 //causes email to be unique; passport uses this field to authenticate 
 userSchema.plugin(passportLocalMongoose, {
   usernameField: "email",

@@ -95,17 +95,25 @@ router.post(
   usersController.redirectView
 );
 router.get("/home", homeController.index, homeController.indexView);
+router.get("/logout", usersController.logout, usersController.redirectView);
 // router.get("/message", homeController.getMessagePage);
-router.get(
-  "/",
-  homeController.checkSession,
+// router.get(
+//   "/",
+  // homeController.checkSession,
   // homeController.index,
   // homeController.indexView
-);
+// );
 router.get("/about", homeController.getAboutPage);
 router.post("/home", homeController.createPost, homeController.index, homeController.indexView);
 router.get("/home/:id", homeController.visit, homeController.index, homeController.showOther);
 router.put("/home/:id", homeController.follow, homeController.redirectView);
+router.delete("/post/:id", homeController.delete, homeController.index, homeController.indexView);
+router.get("/profile/me", homeController.profile);
+
+
+router.get("/", homeController.getAboutPage);
+
+// router.get("/", homeController.index, homeController.indexView);
 //Error handling middlewares
 router.use(errorController.logErrors);
 router.use(errorController.pageNotFound);

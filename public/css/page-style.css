@@ -76,6 +76,7 @@ a:focus {
     margin-bottom: 1em;
 }
 
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -178,9 +179,11 @@ h5{
 }
 
 .big-symbol {
-    width: 60px !important;
+    width: 60px;
     height: 40px;
-    padding-right: 10px;
+    margin-left: 15px;
+    /* display: block; */
+    /* margin-right: 10px; */
 }
 
 .sidebar #img {
@@ -202,9 +205,39 @@ h5{
     margin-bottom: 4px;
 }
 
+.tweetBtn {
+    float: right;
+    margin-right: -30px;
+}
+
 .centerText {
     text-align: center;
 }
+
+.login-status {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+  
+.log-out {
+    position: absolute;
+    right: 10px;
+}
+  
+.bubble {
+    padding: 10px;
+    background: #245463;
+    border-radius: 20px;
+}
+  
+/* @media (max-width: 760px) {
+    .login-status .bubble {
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 2vw;
+} */
+
 
 
 ul ul a {
@@ -255,6 +288,11 @@ input[type="text"]{
     .hiddenBar{
         display: none;
     }
+    .login-status .bubble {
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 2vw;
+  }
 }
 
 @media (max-width: 936px) {

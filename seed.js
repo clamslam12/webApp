@@ -17,43 +17,43 @@ let posts = [
     post: "This is test post",
     userEmail: "jon@wexler.com",
     userName: "jwexler",
-    fullName: "test",
+    fullName: "John Wexler"
   },
   {
-    post: "A new post",
+    post: "How are you",
     userEmail: "charlie@angel.com",
     userName: "cangel",
-    fullName: "test",
+    fullName: "Charlie Angel"
   },
   {
-    post: "A new post",
-    userEmail: "charlie@angel.com",
-    userName: "cangel",
-    fullName: "test",
+    post: "What's new",
+    userEmail: "jon@wexler.com",
+    userName: "jwexler",
+    fullName: "John Wexler",
   },
   {
-    post: "A new post",
+    post: "This is a greate day",
     userEmail: "charlie@angel.com",
     userName: "cangel",
-    fullName: "test",
+    fullName: "Charlie Angel",
   },
   {
-    post: "A new post",
-    userEmail: "charlie@angel.com",
-    userName: "cangel",
-    fullName: "test",
+    post: "Just test",
+    userEmail: "elvis@john.com",
+    userName: "ejohn",
+    fullName: "Elvis John"
   },
   {
-    post: "A new post",
+    post: "Hi",
     userEmail: "charlie@angel.com",
     userName: "cangel",
-    fullName: "test",
+    fullName: "Charlie Angel",
   },
   {
-    post: "A new post",
-    userEmail: "charlie@angel.com",
-    userName: "cangel",
-    fullName: "test",
+    post: "Nice",
+    userEmail: "elvis@john.com",
+    userName: "ejohn",
+    fullName: "Elvis John"
   },
 ];
 
@@ -69,6 +69,7 @@ let users = [
     securityQuestion: "nickName",
     securityResponse: "jonw",
     bio: "Hello this is jon wexler bio",
+    numberOfPosts: 2
   },
   {
     name: { firstName: "Charlie", lastName: "Angel" },
@@ -81,6 +82,7 @@ let users = [
     securityQuestion: "motherMaiden",
     securityResponse: "mom",
     bio: "Hello this is charlie angel bio",
+    numberOfPosts: 3
   },
   {
     name: { firstName: "Elvis", lastName: "John" },
@@ -93,6 +95,8 @@ let users = [
     securityQuestion: "mascot",
     securityResponse: "tigers",
     bio: "Hello this is elvis john bio",
+    numberOfPosts: 2
+
   },
 ];
 
@@ -101,6 +105,12 @@ User.deleteMany()
   .exec()
   .then(() => {
     console.log("Users data is empty!");
+  });
+
+Post.deleteMany()
+  .exec()
+  .then(() => {
+    console.log("Post data is empty!");
   });
 
 let commands = [];
@@ -133,7 +143,7 @@ posts.forEach((post) => {
       post: post.post,
       userEmail: post.userEmail,
       userName: post.userName,
-      fullName: post.fullName,
+      fullName: post.fullName
     })
   );
 });

@@ -52,44 +52,55 @@ module.exports = {
       });
     let myEmail = req.user.email
     User.findOne({ email: myEmail })
-    .then(user => {
-      console.log(`15`);
-      console.log(user);
-      let updateUser = user;
-      updateUser.numberOfPosts += 1;
-      // console.log(user.following);
-      // console.log(user._id)
-      User.findByIdAndUpdate(user._id, {
-        $set: updateUser
+      .then(user => {
+        console.log(`15`);
+        console.log(user);
+        let updateUser = user;
+        updateUser.numberOfPosts += 1;
+        // console.log(user.following);
+        // console.log(user._id)
+        User.findByIdAndUpdate(user._id, {
+          $set: updateUser
+        })
+          .then(() => {
+            // res.locals.redirect = `/home/${otherEmail}`;
+            next();
+          })
+      }).catch(error => {
+        console.log(`Error to increase post ${error.message}`);
       })
-      .then(() => {
-      // res.locals.redirect = `/home/${otherEmail}`;
-      next();
+
+  },
+  profile: (req, res, next) => {
+    Post.find()
+      .then((posts) => {
+        res.locals.posts = posts.reverse();
+        res.locals.user = req.user;
+        res.render("homePage/profile", { layout: "mainLayout" });
       })
-    }).catch (error => {
-      console.log(`Error to increase post ${error.message}`);
-    })
-    
+      .catch((error) => {
+        console.log(`Error fetching posts: ${error.message}`);
+      });
   },
   visit: (req, res, next) => {
     let otherUserEmail = req.params.id;
     console.log(`what is this ${otherUserEmail}`)
     User.findOne({ email: otherUserEmail })
-    .then(otherUser => {
-      console.log(otherUser)
-      res.locals.otherUser = otherUser;
-      // let user = req.user;
-      var following = req.user.following.includes(otherUser.email);
-      res.locals.following = following;
-      next();
-    })
-    .catch(error => {
-      console.log(`errro ${error.message}`)
-      // next(error);
-    })
+      .then(otherUser => {
+        console.log(otherUser)
+        res.locals.otherUser = otherUser;
+        // let user = req.user;
+        var following = req.user.following.includes(otherUser.email);
+        res.locals.following = following;
+        next();
+      })
+      .catch(error => {
+        console.log(`errro ${error.message}`)
+        // next(error);
+      })
   },
   showOther: (req, res) => {
-    res.render("homePage/otherUser", {layout: "mainLayout"});
+    res.render("homePage/otherUser", { layout: "mainLayout" });
   },
   follow: (req, res, next) => {
     console.log("never")
@@ -98,12 +109,12 @@ module.exports = {
     console.log(`hehre ${req.params.id}`);
     var userFollowing = req.user.following;
     console.log(`11`);
-    if(userFollowing.includes(otherEmail)){
+    if (userFollowing.includes(otherEmail)) {
       userFollowing = userFollowing.filter(email => email !== otherEmail);
       console.log(`13`);
 
     }
-    else{
+    else {
       userFollowing.push(otherEmail);
       console.log(`14`);
       console.log(userFollowing);
@@ -111,23 +122,51 @@ module.exports = {
     let myEmail = req.user.email;
     console.log(`here 3 ${myEmail}`)
     User.findOne({ email: myEmail })
-    .then(user => {
-      console.log(`15`);
-      console.log(user);
-      let updateUser = user;
-      updateUser.following = userFollowing;
-      console.log(user.following);
-      console.log(user._id)
-      User.findByIdAndUpdate(user._id, {
-        $set: updateUser
+      .then(user => {
+        console.log(`15`);
+        console.log(user);
+        let updateUser = user;
+        updateUser.following = userFollowing;
+        console.log(user.following);
+        console.log(user._id)
+        User.findByIdAndUpdate(user._id, {
+          $set: updateUser
+        })
+          .then(() => {
+            res.locals.redirect = `/home/${otherEmail}`;
+            next();
+          })
+      }).catch(error => {
+        console.log(`Error to follow/unfollow ${error.message}`);
       })
+  },
+  delete: (req, res, next) => {
+    let postId = req.params.id;
+    Post.findByIdAndRemove(postId)
       .then(() => {
-      res.locals.redirect = `/home/${otherEmail}`;
-      next();
+        let myEmail = req.user.email;
+        console.log(`here 3 ${myEmail}`)
+        User.findOne({ email: myEmail })
+          .then(user => {
+            console.log(`15`);
+            console.log(user);
+            let updateUser = user;
+            updateUser.numberOfPosts -= 1;
+            console.log(user.following);
+            console.log(user._id)
+            User.findByIdAndUpdate(user._id, {
+              $set: updateUser
+            })
+              .then(() => {
+                // res.locals.redirect = `/home/${otherEmail}`;
+                next();
+              })
+              .catch(error => {
+                console.log(`Error deleting post by ID: ${error.message}`);
+                next();
+              });
+          })
       })
-    }).catch (error => {
-      console.log(`Error to follow/unfollow ${error.message}`);
-    })
   },
   redirectView: (req, res, next) => {
     let redirectPath = res.locals.redirect;

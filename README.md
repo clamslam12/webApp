@@ -18,7 +18,12 @@ Directions: Database is locally hosted at mongodb://localhost:27017/iMedia . You
 
 Minh Durbin: Add CR actions to users, sessions/cookies, passport for handling user sign-up/sign-in, express-validator for server side validation, flash messages for user signup error/success handling.
 
-Long Sen:   
+Long Sen: I'm responseible for home page feutures:
+        None-logined user can only see all posts in home page, or login at home page.
+        Logined users can post and delete their own posts, see totals number of posts.
+        Logined users can click on others to visit other home pages. Then can follow/unfollow others.
+        Logined users can click profile tab to total posts, total following.
+        Explore, Notifications, Message, and More tabs do not have any features now.
 
 Assignment 3 - All requirements working.
 

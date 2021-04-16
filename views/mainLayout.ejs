@@ -35,54 +35,58 @@
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/home.png" class="symbol"> -->
-                        <p><a class="header-font" href="/home">Home</a></p>
+                        <p class="centerText"><a class="header-font" href="/home">Home</a></p>
                     </div>
                 </li>
 
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/explore.png" class="symbol"> -->
-                        <p class="header-font">Explore</p>
+                        <p class="header-font centerText">Explore</p>
                         </p>
                 </li>
 
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/notification.png" class="symbol"> -->
-                        <p class="header-font">Notifications</p>
+                        <p class="header-font centerText">Notifications</p>
                         </p>
                 </li>
 
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/message.png" class="symbol"> -->
-                        <p><a class="header-font" href="message">Message</a></p>
+                        <p class="header-font centerText">Message</p>
                     </div>
                 </li>
 
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/profile.png" class="symbol"> -->
-                        <p class="header-font">Profile</p>
+                        <p class="header-font centerText">
+                            <!-- <% if(user) { %> -->
+                                <a class="header-font centerText" href="/profile/me">Profile</a>
+                            <!-- <%}%> -->
+                         </p>
                     </div>
                 </li>
 
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/more.png" class="symbol"> -->
-                        <p class="header-font">More</p>
+                        <p class="header-font centerText">More</p>
                     </div>
                 </li>
             </ul>
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <button type="button" class="btn button col-sm-12">Tweet</button>
+                    <!-- <button type="button" class="btn button col-sm-12">Tweet</button> -->
                 </li>
                 <li>
                     <div class="left-align2">
-                        <img src="../images/self.png" class="big-symbol">
                         <% if(user) {%>
+                        <img src="../images/self.png" class="big-symbol">
                             <b class="header-font">
                                 <%= user.userName %>
                                     <%}%>
@@ -90,6 +94,20 @@
                     </div>
                 </li>
             </ul>
+            <div>
+                <% if (loggedIn) { %>
+                <div class="bubble centerText">
+                    <a href="/logout">Log out</a>
+                </div>
+                <%} else {%>
+                <div class="bubble centerText">
+                    <a href="/login">Log In</a>
+                </div>
+            </br>
+                <p class=centerText><a href="/users/new">Sign Up</a></p>
+                <p class=centerText><a href="/about">About</a></p>
+                <% } %>
+            </div>
         </div>
         <%- body %>
 
