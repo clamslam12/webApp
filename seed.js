@@ -56,9 +56,11 @@ let posts = [{
 ]
 
 let users = [
-  {
+  { 
+    name:{
     firstName: "Jon",
     lastName: "Wexler",
+    },
     location: "Seattle",
     gender: "male",
     dateOfBirth: "1970-03-01",
@@ -71,8 +73,10 @@ let users = [
     bio: "Hello this is jon wexler bio",
   },
   {
+    name: {
     firstName: "Charlie",
     lastName: "Angel",
+    },
     location: "Los Angeles",
     gender: "female",
     dateOfBirth: "1999-09-23",
@@ -84,9 +88,11 @@ let users = [
     securityResponse: "mom",
     bio: "Hello this is charlie angel bio",
   },
-  {
+  { 
+    name: {
     firstName: "Elvis",
     lastName: "John",
+    },
     location: "Austin",
     gender: "male",
     dateOfBirth: "2020-12-29",
@@ -113,8 +119,7 @@ let commands = [];
 users.forEach((u) => {
   commands.push(
     User.create({
-      firstName: u.firstName,
-      lastName: u.lastName,
+      name: u.name,
       location: u.location,
       gender: u.gender,
       dateOfBirth: u.dateOfBirth,
@@ -124,7 +129,7 @@ users.forEach((u) => {
       confirmPassword: u.confirmPassword,
       securityQuestion: u.securityQuestion,
       securityResponse: u.securityResponse,
-      bio: u.bio,
+      bio: u.bio
     })
   );
 });

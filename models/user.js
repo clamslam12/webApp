@@ -1,6 +1,7 @@
 "use strict";
 
 const mongoose = require("mongoose"),
+  User = require("./user"),
   passportLocalMongoose = require("passport-local-mongoose"),
   { Schema } = mongoose;
 //define a schema
@@ -46,12 +47,34 @@ const userSchema = new Schema(
     bio: {
       type: String,
     },
+    // numOfFollowing : {
+    //   type: Number,
+    //   default: 0,
+    // },
+    // numOfFollower: {
+    //   type: Number,
+    //   default: 0,
+    // },
+    following: [],
+    follower: [],
+    numberOfPosts: {
+      type: Number,
+      default: 0
+    }
   },
   { timestamps: true }
 );
 //virtual methods are computed; not save on database
 userSchema.virtual("fullName").get(function () {
   return `${this.name.firstName} ${this.name.lastName}`;
+});
+
+userSchema.virtual("numOfFollowing").get(function () {
+  return this.following.length;
+});
+
+userSchema.virtual("numOfFollower").get(function () {
+  return this.follower.length;
 });
 //causes email to be unique; passport uses this field to authenticate 
 userSchema.plugin(passportLocalMongoose, {

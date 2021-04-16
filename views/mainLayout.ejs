@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="./css/page-style.css">
+    <link rel="stylesheet" href="../css/page-style.css">
     <script src="https://unpkg.com/vue@next"></script>
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -24,54 +24,53 @@
 </head>
 
 <body>
-    
-    <div class="wrapper"
-        <!-- Sidebar  -->
-        <div class="sidebar" class="col-sm-2">
+
+    <div class="wrapper">
+        <div class="sidebar" class="col-sm-1 col-md-1 col-lg-1">
             <div class="sidebar-header">
-                <img src="images/imgae.png" id="img">
+                <img src="../images/imgae.png" id="img">
             </div>
 
             <ul class="list-unstyled components">
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/home.png" class="symbol"> -->
-                        <p><a class="header-font" href="Home">Home</a></p>
+                        <p><a class="header-font" href="/home">Home</a></p>
                     </div>
                 </li>
 
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/explore.png" class="symbol"> -->
-                    <p class="header-font">Explore</p>
-                    </p>
+                        <p class="header-font">Explore</p>
+                        </p>
                 </li>
 
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/notification.png" class="symbol"> -->
-                    <p class="header-font">Notifications</p>
-                    </p>
+                        <p class="header-font">Notifications</p>
+                        </p>
                 </li>
 
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/message.png" class="symbol"> -->
-                    <p><a class="header-font" href="message">Message</a></p>
+                        <p><a class="header-font" href="message">Message</a></p>
                     </div>
                 </li>
 
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/profile.png" class="symbol"> -->
-                    <p class="header-font">Profile</p>
+                        <p class="header-font">Profile</p>
                     </div>
                 </li>
 
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/more.png" class="symbol"> -->
-                    <p class="header-font">More</p>
+                        <p class="header-font">More</p>
                     </div>
                 </li>
             </ul>
@@ -82,34 +81,34 @@
                 </li>
                 <li>
                     <div class="left-align2">
-                        <img src="images/self.png" class="big-symbol">
-                    <% if(user) {%>
-                    <b class="header-font">
-                        <%= user.userName %>
-                        <%}%>
-                    </b>
+                        <img src="../images/self.png" class="big-symbol">
+                        <% if(user) {%>
+                            <b class="header-font">
+                                <%= user.userName %>
+                                    <%}%>
+                            </b>
                     </div>
                 </li>
             </ul>
         </div>
         <%- body %>
 
-        <!-- jQuery CDN - Slim version (=without AJAX) -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <!-- Popper.JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-            crossorigin="anonymous"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-            crossorigin="anonymous"></script>
+            <!-- jQuery CDN - Slim version (=without AJAX) -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+            <!-- Popper.JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+                integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+                crossorigin="anonymous"></script>
+            <!-- Bootstrap JS -->
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+                integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+                crossorigin="anonymous"></script>
 
-            <script src="./js/vue.js"></script>
+            <script src="../js/vue.js"></script>
             <script>
-              const mountedApp = app.mount("#app");
+                const mountedApp = app.mount("#app");
             </script>
 </body>
 

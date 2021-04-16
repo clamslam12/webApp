@@ -74,6 +74,7 @@ router.use((req, res, next) => {
   res.locals.flashMessages = req.flash(); //key/value pairs
   res.locals.loggedIn = req.isAuthenticated();
   res.locals.user = req.user;
+  // res.locals.other = req.other;
   // console.log(`Get herer ${req.user}`)
   next();
 });
@@ -102,8 +103,9 @@ router.get(
   // homeController.indexView
 );
 router.get("/about", homeController.getAboutPage);
-router.post("/home", homeController.createPost, homeController.index, homeController.indexView)
-
+router.post("/home", homeController.createPost, homeController.index, homeController.indexView);
+router.get("/home/:id", homeController.visit, homeController.index, homeController.showOther);
+router.put("/home/:id", homeController.follow, homeController.redirectView);
 //Error handling middlewares
 router.use(errorController.logErrors);
 router.use(errorController.pageNotFound);

@@ -1,41 +1,66 @@
-<div id="content" class="col-sm-8 col-md-6 col-lg-6">
-  <div class="box home-box header-font">Home </div>
-  <% if(user) { %>
+<div id="content" class="col-sm-6 col-md-8 col-lg-8">
+  <% if(otherUser) { %>
+    <div class="box">
+      <div class="otherUser header-font">
+        <img src="../images/self.png" class="big-symbol" />
+        <%= otherUser.userName %>
+          <div class="col-sm-2">
+            <% if(following) { %>
+              <form method="POST" action="<%= `/home/${otherUser.email}?_method=PUT` %>">
+                <button type="submit" class="btn button btnLogin">Follow</button>
+              </form>
+              <% } else { %>
+                <form method="POST" action="<%= `/home/${otherUser.email}?_method=PUT` %>">
+                  <button type="submit" class="btn button btnLogin">Unfollow</button>
+                </form>
+                <% } %>
+              </div>
+        </div>
+        <div class="centerText">
+        <p>Total Posts: <%= otherUser.numberOfPosts %></p>
+        <p>Following: <%= otherUser.following.length %></p>
+        <p>Follower: <%=otherUser.follower.length %></p>
+        </div>
+    </div>
+    <%}%>
+      <div class="margin-bottom"></div>
+
+      <!-- <% if(user) { %>
     <div class="line"></div>
     <div class="box">
-      <form action="/home" method="POST">
+        <form action="/home" method="POST">
         <div class="form-group row">
-          <div class="col-sm-1">
-            <img src="../images/self.png" class="big-symbol" />
-          </div>
-          <div class="col-sm-8">
-            <input type="text" name="newPost" value="What is happening?" />
-          </div>
-          <div class="col-sm-2">
-            <button type="submit" class="btn button">Tweet</button>
-          </div>
+            <div class="col-sm-1">
+                <img src="../images/self.png" class="big-symbol" />
+            </div>
+            <div class="col-sm-8">
+                <input type="text" name="newPost" value="What is happening?" />
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn button">Tweet</button>
+            </div>
         </div>
-      </form>
+        </form>
     </div>
     <div class="margin-bottom"></div>
-    <% } %>
+    <% } %> -->
 
       <!-- <div class="box"> -->
       <% posts.forEach(post=> { %>
         <div class="box">
           <div class="form-group row">
-            <div class="col-sm-2 col-md-1">
+            <div class="col-sm-1 col-md-1">
               <img src="../images/self.png" class="big-symbol" />
             </div>
-            <div class="col-sm-9 col-md-10">
+            <div class="col-sm-10 col-md-10">
               <p class="header-font">
-                <% if(post.userEmail != user.email) { %>
+                <% if(post.userEmail !=user.email) { %>
                   <a href="<%= `/home/${post.userEmail}` %>">
                     <%= post.userName %>
                   </a>
                   <% } else { %>
                     <%= post.userName %>
-                  <%}%>
+                      <%}%>
               </p>
               <p class="fullName text-secondary">
                 @<%= post.fullName %>
@@ -183,7 +208,7 @@
     </div>
   </div> -->
 
-<div class="sidebar hiddenBar" class="col-sm-4">
+<div class="sidebar hiddenBar" class="col-sm-4 col-md-2">
   <div class="box home-box">What's happening</div>
   <div class="line"></div>
   <div class="box">
