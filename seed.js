@@ -58,16 +58,8 @@ let posts = [
 ];
 
 let users = [
-<<<<<<< HEAD
-  { 
-    name:{
-    firstName: "Jon",
-    lastName: "Wexler",
-    },
-=======
   {
     name: { firstName: "Jon", lastName: "Wexler" },
->>>>>>> 86326ca5c3f07c9087162a5533b46077f96843b5
     location: "Seattle",
     gender: "male",
     dateOfBirth: "1970-03-01",
@@ -79,14 +71,7 @@ let users = [
     bio: "Hello this is jon wexler bio",
   },
   {
-<<<<<<< HEAD
-    name: {
-    firstName: "Charlie",
-    lastName: "Angel",
-    },
-=======
     name: { firstName: "Charlie", lastName: "Angel" },
->>>>>>> 86326ca5c3f07c9087162a5533b46077f96843b5
     location: "Los Angeles",
     gender: "female",
     dateOfBirth: "1999-09-23",
@@ -97,16 +82,8 @@ let users = [
     securityResponse: "mom",
     bio: "Hello this is charlie angel bio",
   },
-<<<<<<< HEAD
-  { 
-    name: {
-    firstName: "Elvis",
-    lastName: "John",
-    },
-=======
   {
     name: { firstName: "Elvis", lastName: "John" },
->>>>>>> 86326ca5c3f07c9087162a5533b46077f96843b5
     location: "Austin",
     gender: "male",
     dateOfBirth: "2020-12-29",
@@ -132,21 +109,6 @@ let commands = [];
 users.forEach((u) => {
   let newUser = new User(u);
   commands.push(
-<<<<<<< HEAD
-    User.create({
-      name: u.name,
-      location: u.location,
-      gender: u.gender,
-      dateOfBirth: u.dateOfBirth,
-      email: u.email,
-      userName: u.userName,
-      password: u.password,
-      confirmPassword: u.confirmPassword,
-      securityQuestion: u.securityQuestion,
-      securityResponse: u.securityResponse,
-      bio: u.bio
-    })
-=======
     // User.create({
     //   firstName: u.firstName,
     //   lastName: u.lastName,
@@ -162,7 +124,6 @@ users.forEach((u) => {
     //   bio: u.bio,
     // })
     User.register(newUser, u.password)
->>>>>>> 86326ca5c3f07c9087162a5533b46077f96843b5
   );
 });
 

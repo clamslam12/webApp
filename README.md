@@ -12,6 +12,14 @@ Team Member: Minh Durbin, Long Sen
 
 Responsibility:
 
+Assignment 4 - All requirements working
+
+Directions: Database is locally hosted at mongodb://localhost:27017/iMedia . You can download MongoDB Compass and connect to it. The database name is "iMedia" and the collections are "users" and "posts".
+
+Minh Durbin: Add CR actions to users, sessions/cookies, passport for handling user sign-up/sign-in, express-validator for server side validation, flash messages for user signup error/success handling.
+
+Long Sen:   
+
 Assignment 3 - All requirements working.
 
 Directions: Database is locally hosted at mongodb://localhost:27017/iMedia . You can download MongoDB Compass and connect to it. The database name is "iMedia" and the collection is "users".
