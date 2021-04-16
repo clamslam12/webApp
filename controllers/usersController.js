@@ -93,6 +93,7 @@ module.exports = {
         req.flash("error", messages.join(" and "));
         req.skip = true;
         res.locals.redirect = "/users/new";
+        next();
       } else if (req.body.password != req.body.confirmPassword) {
         req.flash("error", "Passwords do not match");
         req.skip = true;
