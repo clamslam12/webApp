@@ -103,37 +103,28 @@ module.exports = {
     res.render("homePage/otherUser", { layout: "mainLayout" });
   },
   follow: (req, res, next) => {
-    console.log("never")
-    // let email = req.other.email;
     let otherEmail = req.params.id;
-    console.log(`hehre ${req.params.id}`);
     var userFollowing = req.user.following;
-    console.log(`11`);
     if (userFollowing.includes(otherEmail)) {
       userFollowing = userFollowing.filter(email => email !== otherEmail);
-      console.log(`13`);
-
     }
     else {
       userFollowing.push(otherEmail);
-      console.log(`14`);
-      console.log(userFollowing);
     }
     let myEmail = req.user.email;
-    console.log(`here 3 ${myEmail}`)
     User.findOne({ email: myEmail })
       .then(user => {
-        console.log(`15`);
-        console.log(user);
         let updateUser = user;
         updateUser.following = userFollowing;
-        console.log(user.following);
-        console.log(user._id)
         User.findByIdAndUpdate(user._id, {
           $set: updateUser
         })
           .then(() => {
-            res.locals.redirect = `/home/${otherEmail}`;
+            console.log(req.url.substr(1,7));
+            if (req.url.substr(1,7) === `explore` ){
+              res.locals.redirect = "/explore";
+            }
+            else {res.locals.redirect = `/home/${otherEmail}`;}
             next();
           })
       }).catch(error => {
@@ -145,7 +136,6 @@ module.exports = {
     Post.findByIdAndRemove(postId)
       .then(() => {
         let myEmail = req.user.email;
-        console.log(`here 3 ${myEmail}`)
         User.findOne({ email: myEmail })
           .then(user => {
             console.log(`15`);
@@ -167,6 +157,17 @@ module.exports = {
               });
           })
       })
+  },
+  explore: (req, res) => {
+    User.find()
+      .then((users) => {
+        res.locals.users = users;
+        res.locals.user = req.user;
+        res.render("homePage/explore", { layout: "mainLayout" });
+      })
+      .catch((error) => {
+        console.log(`Error fetching posts: ${error.message}`);
+      });
   },
   redirectView: (req, res, next) => {
     let redirectPath = res.locals.redirect;

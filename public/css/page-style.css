@@ -205,6 +205,14 @@ h5{
     margin-bottom: 4px;
 }
 
+.following {
+    background-color: #6d7fcc;
+}
+
+.unfollow {
+    background-color: rgb(226, 223, 223);
+}
+
 .tweetBtn {
     float: right;
     margin-right: -30px;

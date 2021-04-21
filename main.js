@@ -108,6 +108,9 @@ router.post("/home", homeController.createPost, homeController.index, homeContro
 router.get("/home/:id", homeController.visit, homeController.index, homeController.showOther);
 router.put("/home/:id", homeController.follow, homeController.redirectView);
 router.delete("/post/:id", homeController.delete, homeController.index, homeController.indexView);
+router.get("/explore", homeController.explore);
+router.put("/explore/:id", homeController.follow, homeController.redirectView);
+
 router.get("/profile/me", homeController.profile);
 
 

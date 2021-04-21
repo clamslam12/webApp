@@ -1,0 +1,93 @@
+
+
+<div id="content" class="col-sm-8 col-md-6 col-lg-6">
+    <div class="box home-box header-font">Explore</div>
+    <div class="line"></div>
+
+        <% users.forEach(other=> { %>
+        <% if (user) {%>
+        <% if (user.email !=other.email) { %>
+            <div class="box">
+                <div class="form-group row">
+                    <div class="col-sm-2 col-md-2">
+                        <img src="../images/self.png" class="big-symbol" />
+                    </div>
+                    <div class="col-sm-7 col-md-7">
+                        <p class="header-font">
+                            <%= other.userName %>
+                        </p>
+                        <p class="fullName text-secondary">
+                            @<%= other.fullName %>
+                        </p>
+                    </div>
+
+                        <div class="right-align">
+                            <% if(user.following.includes(other.email)) { %>
+                            <form method="POST" action="<%= `/explore/${other.email}?_method=PUT` %>">
+                                <button type="submit" class="btn button btnLogin unfollow">Unfollow</button>
+                            </form>
+                            <% } else { %>
+                                <form method="POST" action="<%= `/explore/${other.email}?_method=PUT` %>">
+                                    <button type="submit" class="btn button btnLogin following">Follow</button>
+                                </form>
+                                <% } %> 
+                        </div>
+                </div>
+            </div>
+            <div class="line"></div>
+            <%}%>
+            <%} else {%>
+                <div class="box">
+                    <div class="form-group row">
+                        <div class="col-sm-2 col-md-2">
+                            <img src="../images/self.png" class="big-symbol" />
+                        </div>
+                        <div class="col-sm-7 col-md-7">
+                            <p class="header-font">
+                                <%= other.userName %>
+                            </p>
+                            <p class="fullName text-secondary">
+                                @<%= other.fullName %>
+                            </p>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="line"></div>
+                        <%}%>
+            <% }); %>
+</div>
+
+
+
+<div class="sidebar hiddenBar" class="col-sm-4 col-md-4">
+    <div class="box home-box">What's happening</div>
+    <div class="line"></div>
+    <div class="box">
+        <div>
+            <a
+                href="https://www.latimes.com/entertainment-arts/story/2021-02-23/shailene-woodley-aaron-rodgers-engaged-jimmy-fallon">
+                <h5>LAT Entertainment</h5>
+                Shailene Woodley opens up about engagement to Aaron Rodgers
+            </a>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div class="box">
+        <div>
+            <a
+                href="https://www.wsj.com/articles/pandemic-loneliness-is-hitting-young-adults-especially-hard-11614104792">
+                <h5>The Wall Street Journal</h5>
+                Pandemic loneliness is hitting young adults especially hard
+            </a>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div class="box">
+        <div>
+            <a href="https://www.buzzfeed.com/jenniferabidor/elizabeth-olsen-mary-kate-ashley">
+                <h5>BuzzFeed</h5>
+                People Don't Know Elizabeth Olsen Is Related To Mary-Kate and Ashley
+            </a>
+        </div>
+    </div>
+</div>
