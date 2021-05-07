@@ -1,20 +1,9 @@
 <div id="content" class="col-sm-8 col-md-6 col-lg-6">
-    <% if(user) { %>
-      <div class="box">
-        <div class="otherUser header-font">
-          <img src="../images/self.png" class="big-symbol" />
-          <%= user.userName %>
-          </div>
-          <div class="centerText">
-          <p>Total Posts: <%= user.numberOfPosts %></p>
-          <p>Following: <%= user.following.length %></p>
-          <p>Bio: <%=user.bio %></p>
-          </div>
-      </div>
-      <%}%>
-        <div class="margin-bottom"></div>
- 
-        <% myPosts.forEach(post=> { %>
+    <div class="box home-box header-font">Notifications </div>
+    <div class="line"></div>
+  
+        <!-- <div class="box"> -->
+        <% followingPosts.forEach(post=> { %>
           <div class="box">
             <div class="form-group row">
               <div class="col-sm-2 col-md-2">
@@ -31,10 +20,9 @@
                     </a>
                     <% } else { %>
                       <%= post.userName %>
-                      <span class="right-align"><a href="<%= `/mypost/${post._id}?_method=DELETE` %>" onclick="return confirm('Are you sure you want to delete this post?')">X</a></span>
+                      <span class="right-align"><a href="<%= `/post/${post._id}?_method=DELETE` %>" onclick="return confirm('Are you sure you want to delete this post?')">X</a></span>
                      <%}%>
                     <%}%>
-  
                 </p>
                 <p class="fullName text-secondary">
                   @<%= post.fullName %>
@@ -71,7 +59,8 @@
           <% }); %>
   </div>
   
-    <!-- <div class="sidebar hiddenBar" class="col-sm-4 col-md-4">
+ 
+  <!-- <div class="sidebar hiddenBar" class="col-sm-4">
     <div class="box home-box">What's happening</div>
     <div class="line"></div>
     <div class="box">

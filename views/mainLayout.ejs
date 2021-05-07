@@ -43,23 +43,31 @@
                     <div class="col-sm-12">
                         <!-- <img src="images/explore.png" class="symbol"> -->
                         <p class="header-font centerText">
-                            <a class="header-font" href="/explore">Explore</a> 
+                            <a class="header-font" href="/explore">Explore</a>
                         </p>
-                        </p>
+                    </div>
                 </li>
 
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/notification.png" class="symbol"> -->
-                        <p class="header-font centerText">Notifications</p>
+                        <p class="header-font centerText">
+                            <% if (loggedIn) { %>
+                            <a class="header-font" href="/notification">Notification</a> 
+                            <% }else { %>
+                            Notification
+                            <% } %>
                         </p>
+                        </div>
                 </li>
 
                 <li>
                     <div class="col-sm-12">
                         <!-- <img src="images/message.png" class="symbol"> -->
-                        <p class="header-font centerText">Message</p>
-                    </div>
+                        <p class="header-font centerText">
+                            Message
+                        </p>                   
+                     </div>
                 </li>
 
                 <li>
@@ -112,6 +120,83 @@
             </div>
         </div>
         <%- body %>
+
+        <!-- <div class="sidebar hiddenBar" class="col-sm-4">
+            <div class="box home-box">What's happening</div>
+            <div class="line"></div>
+            <div class="box">
+              <div>
+                <a
+                  href="https://www.latimes.com/entertainment-arts/story/2021-02-23/shailene-woodley-aaron-rodgers-engaged-jimmy-fallon">
+                  <h5>LAT Entertainment</h5>
+                  Shailene Woodley opens up about engagement to Aaron Rodgers
+                </a>
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="box">
+              <div>
+                <a href="https://www.wsj.com/articles/pandemic-loneliness-is-hitting-young-adults-especially-hard-11614104792">
+                  <h5>The Wall Street Journal</h5>
+                  Pandemic loneliness is hitting young adults especially hard
+                </a>
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="box">
+              <div>
+                <a href="https://www.buzzfeed.com/jenniferabidor/elizabeth-olsen-mary-kate-ashley">
+                  <h5>BuzzFeed</h5>
+                  People Don't Know Elizabeth Olsen Is Related To Mary-Kate and Ashley
+                </a>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="sidebar hiddenBar" class="col-sm-4">
+            <div class="box home-box header-font">Trending</div>
+            <div class="line"></div>
+
+            <div class="box">
+                <div>
+                    <dl class="tag">
+                    <% hashtags.forEach(tag => { %>
+                    <dt><%=tag.word %></dt>
+                    <% }); %>
+                    </dl>
+                </div>
+            </div>
+            
+            <div class="line"></div>
+            <div class="box">
+              <div>
+                <a
+                  href="https://www.latimes.com/entertainment-arts/story/2021-02-23/shailene-woodley-aaron-rodgers-engaged-jimmy-fallon">
+                  <h5>LAT Entertainment</h5>
+                  Shailene Woodley opens up about engagement to Aaron Rodgers
+                </a>
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="box">
+              <div>
+                <a href="https://www.wsj.com/articles/pandemic-loneliness-is-hitting-young-adults-especially-hard-11614104792">
+                  <h5>The Wall Street Journal</h5>
+                  Pandemic loneliness is hitting young adults especially hard
+                </a>
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="box">
+              <div>
+                <a href="https://www.buzzfeed.com/jenniferabidor/elizabeth-olsen-mary-kate-ashley">
+                  <h5>BuzzFeed</h5>
+                  People Don't Know Elizabeth Olsen Is Related To Mary-Kate and Ashley
+                </a>
+              </div>
+            </div>
+          </div>
+
 
             <!-- jQuery CDN - Slim version (=without AJAX) -->
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -1,7 +1,8 @@
 "use strict";
 
 const Post = require("../models/post");
-const User = require("../models/user")
+const User = require("../models/user");
+const Hashtag = require("../models/hashtag");
 
 module.exports = {
   checkSession: (req, res, next) => {
@@ -50,6 +51,30 @@ module.exports = {
       .catch(error => {
         console.log(`Error create new post: ${error.message}`);
       });
+    let words = newPost.post.split(' ');
+    let hashtags = words.filter(word => word[0] == '#');
+    if (hashtags.length != 0) {
+        hashtags.forEach(tag => {
+          Hashtag.findOne({word : tag}, function(err, result) {
+            if (result) {
+            let updateTag = result;
+            updateTag.count += 1;
+            Hashtag.findByIdAndUpdate(result._id, {$set: updateTag})
+            .catch(error => {
+              console.log(`Cannot update tag ${error.message}`);
+            })
+            } else {
+              let newTag = {
+                word: tag
+              }
+              Hashtag.create(newTag);
+            }
+          })
+          .catch(error => {
+            console.log(`Cannot create tag ${error.message}`);
+          })
+        })
+    }
     let myEmail = req.user.email
     User.findOne({ email: myEmail })
       .then(user => {
@@ -57,8 +82,6 @@ module.exports = {
         console.log(user);
         let updateUser = user;
         updateUser.numberOfPosts += 1;
-        // console.log(user.following);
-        // console.log(user._id)
         User.findByIdAndUpdate(user._id, {
           $set: updateUser
         })
@@ -74,9 +97,14 @@ module.exports = {
   profile: (req, res, next) => {
     Post.find()
       .then((posts) => {
-        res.locals.posts = posts.reverse();
-        res.locals.user = req.user;
-        res.render("homePage/profile", { layout: "mainLayout" });
+        let myEmail = req.user.email;
+        User.findOne({ email: myEmail })
+        .then((user) => {
+            let myPosts = posts.filter(post => post.userEmail == myEmail);
+            res.locals.myPosts = myPosts.reverse();
+            res.locals.user = req.user;
+            res.render("homePage/profile", { layout: "mainLayout" });
+          })
       })
       .catch((error) => {
         console.log(`Error fetching posts: ${error.message}`);
@@ -102,7 +130,7 @@ module.exports = {
   showOther: (req, res) => {
     res.render("homePage/otherUser", { layout: "mainLayout" });
   },
-  follow: (req, res, next) => {
+  follow: (req, res, next) => { 
     let otherEmail = req.params.id;
     var userFollowing = req.user.following;
     if (userFollowing.includes(otherEmail)) {
@@ -168,6 +196,31 @@ module.exports = {
       .catch((error) => {
         console.log(`Error fetching posts: ${error.message}`);
       });
+  },
+  notification: (req, res, next) => {
+    Post.find()
+      .then((posts) => {
+        let myEmail = req.user.email;
+        User.findOne({ email: myEmail })
+        .then((user) => {
+            let following = user.following;
+            let followingPosts = posts.filter(post => following.includes(post.userEmail));
+            res.locals.followingPosts = followingPosts.reverse();
+            res.locals.user = req.user;
+            res.render("homePage/notification", { layout: "mainLayout" });
+          })
+      })
+      .catch((error) => {
+        console.log(`Error fetching posts: ${error.message}`);
+      });
+  },
+  trendingHashtags: (req, res, next) => {
+    Hashtag.find()
+    .then((hashtags) => {
+      hashtags.sort((a,b) => b.count - a.count);
+      res.locals.hashtags = hashtags;
+      next();
+    })
   },
   redirectView: (req, res, next) => {
     let redirectPath = res.locals.redirect;

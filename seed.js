@@ -7,7 +7,7 @@ const mongoose = require("mongoose"),
   passport = require('passport');
 
 //initiate connection
-mongoose.connect("mongodb://localhost:27017/iMedia", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/iMedia", {
   useNewUrlParser: true,
 });
 mongoose.connection;
