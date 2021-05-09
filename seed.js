@@ -4,12 +4,15 @@ const { Promise } = require("bluebird");
 const mongoose = require("mongoose"),
   User = require("./models/user"),
   Post = require("./models/post"),
-  passport = require('passport');
+  passport = require("passport");
 
 //initiate connection
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/iMedia", {
-  useNewUrlParser: true,
-});
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost:27017/iMedia",
+  {
+    useNewUrlParser: true,
+  }
+);
 mongoose.connection;
 
 let posts = [
@@ -17,13 +20,13 @@ let posts = [
     post: "This is test post",
     userEmail: "jon@wexler.com",
     userName: "jwexler",
-    fullName: "John Wexler"
+    fullName: "John Wexler",
   },
   {
     post: "How are you",
     userEmail: "charlie@angel.com",
     userName: "cangel",
-    fullName: "Charlie Angel"
+    fullName: "Charlie Angel",
   },
   {
     post: "What's new",
@@ -41,7 +44,7 @@ let posts = [
     post: "Just test",
     userEmail: "elvis@john.com",
     userName: "ejohn",
-    fullName: "Elvis John"
+    fullName: "Elvis John",
   },
   {
     post: "Hi",
@@ -53,7 +56,7 @@ let posts = [
     post: "Nice",
     userEmail: "elvis@john.com",
     userName: "ejohn",
-    fullName: "Elvis John"
+    fullName: "Elvis John",
   },
 ];
 
@@ -66,10 +69,10 @@ let users = [
     email: "jon@wexler.com",
     userName: "jwexler",
     password: "Jon12",
-    securityQuestion: "nickName",
+    securityQuestion: "What was your childhood nickname?",
     securityResponse: "jonw",
     bio: "Hello this is jon wexler bio",
-    numberOfPosts: 2
+    numberOfPosts: 2,
   },
   {
     name: { firstName: "Charlie", lastName: "Angel" },
@@ -79,10 +82,10 @@ let users = [
     email: "charlie@angel.com",
     userName: "cangel",
     password: "Charlie23",
-    securityQuestion: "motherMaiden",
+    securityQuestion: "What was your mothers maiden name?",
     securityResponse: "mom",
     bio: "Hello this is charlie angel bio",
-    numberOfPosts: 3
+    numberOfPosts: 3,
   },
   {
     name: { firstName: "Elvis", lastName: "John" },
@@ -92,11 +95,10 @@ let users = [
     email: "elvis@john.com",
     userName: "ejohn",
     password: "Elvis29",
-    securityQuestion: "mascot",
+    securityQuestion: "What was your high schools mascot?",
     securityResponse: "tigers",
     bio: "Hello this is elvis john bio",
-    numberOfPosts: 2
-
+    numberOfPosts: 2,
   },
 ];
 
@@ -143,7 +145,7 @@ posts.forEach((post) => {
       post: post.post,
       userEmail: post.userEmail,
       userName: post.userName,
-      fullName: post.fullName
+      fullName: post.fullName,
     })
   );
 });

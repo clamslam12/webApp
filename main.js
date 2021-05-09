@@ -19,9 +19,12 @@ const express = require("express"),
 //using Promises with Mongoose
 mongoose.Promise = global.Promise;
 //initiate connection
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/iMedia", {
-  useNewUrlParser: true,
-});
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost:27017/iMedia",
+  {
+    useNewUrlParser: true,
+  }
+);
 mongoose.set("useCreateIndex", true);
 //connect to db
 const db = mongoose.connection;
@@ -88,34 +91,98 @@ router.post(
   usersController.create,
   usersController.redirectView
 );
+router.get("/users/:id/edit", usersController.edit);
+router.put(
+  "/users/:id/update",
+  usersController.updateValidate,
+  usersController.checkChangePassword,
+  usersController.update,
+  usersController.redirectView
+);
+router.delete(
+  "/users/:id/delete",
+  usersController.delete,
+  usersController.redirectView
+);
 router.get("/login", usersController.getSigninPage);
 router.post(
   "/login",
   usersController.authenticate,
   usersController.redirectView
 );
-router.get("/home",homeController.trendingHashtags ,homeController.index, homeController.indexView);
-router.get("/logout",homeController.trendingHashtags, usersController.logout, usersController.redirectView);
+router.get(
+  "/home",
+  homeController.checkSession,
+  homeController.trendingHashtags,
+  homeController.index,
+  homeController.indexView
+);
+router.get(
+  "/logout",
+  homeController.trendingHashtags,
+  usersController.logout,
+  usersController.redirectView
+);
 // router.get("/message", homeController.getMessagePage);
 // router.get(
 //   "/",
-  // homeController.checkSession,
-  // homeController.index,
-  // homeController.indexView
+// homeController.checkSession,
+// homeController.index,
+// homeController.indexView
 // );
 router.get("/about", homeController.getAboutPage);
-router.post("/home" ,homeController.createPost, homeController.trendingHashtags , homeController.index, homeController.indexView);
-router.get("/home/:id", homeController.visit, homeController.trendingHashtags,homeController.index, homeController.showOther);
-router.put("/home/:id", homeController.trendingHashtags ,homeController.follow, homeController.redirectView);
-router.delete("/post/:id", homeController.trendingHashtags, homeController.delete, homeController.index, homeController.indexView);
-router.get("/explore",homeController.trendingHashtags, homeController.explore);
-router.put("/explore/:id",homeController.trendingHashtags, homeController.follow, homeController.redirectView);
+router.post(
+  "/home",
+  homeController.createPost,
+  homeController.trendingHashtags,
+  homeController.index,
+  homeController.indexView
+);
+router.get(
+  "/home/:id",
+  homeController.visit,
+  homeController.trendingHashtags,
+  homeController.index,
+  homeController.showOther
+);
+router.put(
+  "/home/:id",
+  homeController.trendingHashtags,
+  homeController.follow,
+  homeController.redirectView
+);
+router.delete(
+  "/post/:id",
+  homeController.trendingHashtags,
+  homeController.delete,
+  homeController.index,
+  homeController.indexView
+);
+router.get("/explore", homeController.trendingHashtags, homeController.explore);
+router.put(
+  "/explore/:id",
+  homeController.trendingHashtags,
+  homeController.follow,
+  homeController.redirectView
+);
 
-router.get("/profile/me",homeController.trendingHashtags ,homeController.profile);
-router.delete("/mypost/:id",homeController.trendingHashtags,homeController.delete, homeController.profile);
+router.get(
+  "/profile/me",
+  homeController.trendingHashtags,
+  homeController.profile
+);
+router.delete(
+  "/mypost/:id",
+  homeController.trendingHashtags,
+  homeController.delete,
+  homeController.profile
+);
 
-router.get("/notification",homeController.trendingHashtags ,homeController.notification);
-
+router.get(
+  "/notification",
+  homeController.trendingHashtags,
+  homeController.notification
+);
 
 router.get("/", homeController.trendingHashtags, homeController.getAboutPage);
 

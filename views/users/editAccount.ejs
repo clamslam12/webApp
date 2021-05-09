@@ -1,0 +1,143 @@
+<div id="content" class="col-sm-8 col-md-6 col-lg-6">
+  <% if(user) { %>
+  <form method="POST" action="<%=`/users/${user._id}/update?_method=PUT`%>">
+    <h2>Edit Account:</h2>
+    <label for="inputFirstName">First Name</label>
+    <input
+      class="form-control"
+      type="text"
+      name="firstName"
+      id="inputFirstName"
+      value="<%= user.name.firstName %>"
+      placeholder="First"
+      autofocus
+    />
+    <label for="inputLastName">Last Name</label>
+    <input
+      class="form-control"
+      type="text"
+      name="lastName"
+      id="inputLastName"
+      value="<%= user.name.lastName %>"
+      placeholder="Last"
+    />
+    <label for="inputLocation">Location</label>
+    <input
+      class="form-control"
+      type="text"
+      name="location"
+      id="inputLocation"
+      value="<%= user.location %>"
+      placeholder="Location"
+    />
+    <label for="inputGender">Gender</label>
+    <input
+      class="form-control"
+      type="text"
+      name="gender"
+      id="inputGender"
+      value="<%= user.gender %>"
+      placeholder="Gender"
+    />
+    <label for="myDob" class="col-form-label">Date of Birth</label>
+    <input
+      type="date"
+      class="form-control"
+      name="dob"
+      id="myDob"
+      required
+      value="<%= userDob %>"
+    />
+    <label for="inputEmail">Email</label>
+    <input
+      class="form-control"
+      type="text"
+      name="email"
+      id="inputEmail"
+      value="<%= user.email %>"
+      placeholder="Email"
+    />
+    <label for="inputUserName">User Name</label>
+    <input
+      class="form-control"
+      type="text"
+      name="userName"
+      id="inputUserName"
+      value="<%= user.userName%>"
+      placeholder="Username"
+    />
+    <label for="inputOldPassword">Old Password</label>
+    <input
+      class="form-control"
+      type="password"
+      name="oldPassword"
+      id="inputOldPassword"
+      placeholder="Old Password"
+    />
+    <label for="inputNewPassword">New Password</label>
+    <input
+      class="form-control"
+      type="password"
+      name="newPassword"
+      id="inputNewPassword"
+      placeholder="New Password"
+    />
+    <label for="inputConfirmNewPassword">Confirm New Password</label>
+    <input
+      class="form-control"
+      type="password"
+      name="confirmNewPassword"
+      id="inputConfirmNewPassword"
+      placeholder="Confirm New Password"
+    />
+    <label for="mySecurityQuestion" class="col-form-label"
+      >Security Question</label
+    >
+    <select
+      name="securityQuestion"
+      id="mySecurityQuestion"
+      class="form-control"
+    >
+      <option value="What was your mothers maiden name?">
+        What was your mother's maiden name?
+      </option>
+      <option value="What was your childhood nickname?">
+        What was your childhood nickname?
+      </option>
+      <option value="What was your high schools mascot?">
+        What was your high school's mascot?
+      </option>
+    </select>
+    <label for="inputResponse">Security Response</label>
+    <input
+      class="form-control"
+      type="text"
+      name="securityResponse"
+      id="inputResponse"
+      value="<%= user.securityResponse%>"
+      placeholder="Security Response"
+    />
+    <label for="inputBio">Bio</label>
+    <input
+      class="form-control"
+      type="text"
+      name="bio"
+      id="inputBio"
+      value="<%= user.bio%>"
+      placeholder="Bio"
+    />
+    <br />
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+      Update
+    </button>
+    <a
+      class="btn btn-lg btn-danger btn-block"
+      href="<%= `/users/${user._id}/delete?_method=DELETE` %>"
+      role="button"
+      onclick="return confirm('Are you sure you want to delete your account?')"
+      >Delete Account</a
+    >
+  </form>
+  <% } %>
+  <div class="margin-bottom"></div>
+</div>

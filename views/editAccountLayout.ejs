@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="../css/page-style.css">
+    <link rel="stylesheet" href="/css/page-style.css">
     <script src="https://unpkg.com/vue@next"></script>
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -28,7 +28,7 @@
     <div class="wrapper">
         <div class="sidebar" class="col-sm-1 col-md-1 col-lg-1">
             <div class="sidebar-header">
-                <img src="../images/imgae.png" id="img">
+                <img src="/images/imgae.png" id="img">
             </div>
 
             <ul class="list-unstyled components">
@@ -106,7 +106,7 @@
                 <li>
                     <div class="left-align2">
                         <% if(user) {%>
-                        <img src="../images/self.png" class="big-symbol">
+                        <img src="/images/self.png" class="big-symbol">
                             <b class="header-font">
                                 <%= user.userName %>
                                     <%}%>
@@ -129,53 +129,22 @@
                 <% } %>
             </div>
         </div>
+        <% if(flashMessages){ %>
+            <% if(flashMessages.success){ %>
+              <div class="flashAccount">
+                <%= flashMessages.success %>
+              </div>
+           <% } else if(flashMessages.error){ %>
+              <div class="flashErrorAccount">
+                <%= flashMessages.error %>
+              </div>
+           <% } %>
+        <% } %>
         <%- body %>
-
-        <!-- <div class="sidebar hiddenBar" class="col-sm-4">
-            <div class="box home-box">What's happening</div>
-            <div class="line"></div>
-            <div class="box">
-              <div>
-                <a
-                  href="https://www.latimes.com/entertainment-arts/story/2021-02-23/shailene-woodley-aaron-rodgers-engaged-jimmy-fallon">
-                  <h5>LAT Entertainment</h5>
-                  Shailene Woodley opens up about engagement to Aaron Rodgers
-                </a>
-              </div>
-            </div>
-            <div class="line"></div>
-            <div class="box">
-              <div>
-                <a href="https://www.wsj.com/articles/pandemic-loneliness-is-hitting-young-adults-especially-hard-11614104792">
-                  <h5>The Wall Street Journal</h5>
-                  Pandemic loneliness is hitting young adults especially hard
-                </a>
-              </div>
-            </div>
-            <div class="line"></div>
-            <div class="box">
-              <div>
-                <a href="https://www.buzzfeed.com/jenniferabidor/elizabeth-olsen-mary-kate-ashley">
-                  <h5>BuzzFeed</h5>
-                  People Don't Know Elizabeth Olsen Is Related To Mary-Kate and Ashley
-                </a>
-              </div>
-            </div>
-          </div> -->
 
           <div class="sidebar hiddenBar" class="col-sm-4">
             <div class="box home-box header-font">Trending</div>
             <div class="line"></div>
-
-            <div class="box">
-                <div>
-                    <dl class="tag">
-                    <% hashtags.forEach(tag => { %>
-                    <dt><%=tag.word %></dt>
-                    <% }); %>
-                    </dl>
-                </div>
-            </div>
             
             <div class="line"></div>
             <div class="box">
@@ -221,7 +190,7 @@
                 integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
                 crossorigin="anonymous"></script>
 
-            <script src="../js/vue.js"></script>
+            <script src="/js/vue.js"></script>
             <script>
                 const mountedApp = app.mount("#app");
             </script>

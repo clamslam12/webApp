@@ -180,17 +180,21 @@
             class="form-control"
             v-model="dropDownResponseSelected"
           >
-            <option value="motherMaiden">
+            <option value="What was your mothers maiden name?">
               What was your mother's maiden name?
             </option>
-            <option value="nickName">What was your childhood nickname?</option>
-            <option value="mascot">What was your high school's mascot?</option>
+            <option value="What was your childhood nickname?">
+              What was your childhood nickname?
+            </option>
+            <option value="What was your high schools mascot?">
+              What was your high school's mascot?
+            </option>
           </select>
         </div>
       </div>
       <div
         class="col-sm-12 col-lg-5"
-        v-if='dropDownResponseSelected == "motherMaiden" || dropDownResponseSelected == "nickName" || dropDownResponseSelected == "mascot" '
+        v-if='dropDownResponseSelected == "What was your mothers maiden name?" || dropDownResponseSelected == "What was your childhood nickname?" || dropDownResponseSelected == "What was your high schools mascot?" '
       >
         <label for="mySecurityResponse" class="col-form-label"
           >Response<span v-if="responseOk == false" class="errorMessage">

@@ -27,6 +27,26 @@ const getUserParams = (body) => {
 };
 
 module.exports = {
+  edit: (req, res, next) => {
+    let userId = req.params.id;
+    User.findById(userId)
+      .then((user) => {
+        //convert Date object to year-month-day format string
+        let year = user.dateOfBirth.getFullYear();
+        let month = ("0" + (user.dateOfBirth.getMonth() + 1)).slice(-2);
+        let day = ("0" + user.dateOfBirth.getDate()).slice(-2);
+        let userDob = year + "-" + month + "-" + day;
+        console.log(userDob, typeof userDob);
+        //save result to res.locals object
+        res.locals.userDob = userDob;
+        res.locals.user = user;
+        res.render("users/editAccount", { layout: "editAccountLayout" });
+      })
+      .catch((error) => {
+        console.log(`Error fetching user by ID: ${error.message}`);
+        next(error);
+      });
+  },
   //save user to database
   create: (req, res, next) => {
     //base case; skip create user and goto next middleware
@@ -59,7 +79,7 @@ module.exports = {
     });
   },
   validate: (req, res, next) => {
-    //server-side validation
+    //server-side account create validation
     req
       .sanitizeBody("email")
       .normalizeEmail({
@@ -74,6 +94,7 @@ module.exports = {
         "gender",
         "userName",
         "password",
+        "confirmPassword",
         "securityResponse",
       ])
       .trim();
@@ -92,17 +113,121 @@ module.exports = {
         let messages = error.array().map((e) => e.msg);
         req.flash("error", messages.join(" and "));
         req.skip = true;
-        res.locals.redirect = "/users/new";
+        res.locals.redirect = `/users/${req.params.id}/edit`;
         next();
       } else if (req.body.password != req.body.confirmPassword) {
         req.flash("error", "Passwords do not match");
         req.skip = true;
-        res.locals.redirect = "/users/new";
+        res.locals.redirect = `/users/${req.params.id}/edit`;
         next();
       } else {
         next();
       }
     });
+  },
+  updateValidate: (req, res, next) => {
+    //server-side account update validation
+    req
+      .sanitizeBody("email")
+      .normalizeEmail({
+        all_lowercase: true,
+      })
+      .trim();
+    req
+      .sanitizeBody([
+        "firstName",
+        "lastName",
+        "location",
+        "gender",
+        "userName",
+        "oldPassword",
+        "newPassword",
+        "confirmNewPassword",
+        "securityResponse",
+      ])
+      .trim();
+    req.sanitizeBody("bio");
+    req.check("email", "email is not valid").isEmail().notEmpty();
+    req.check("firstName", "First name is required").notEmpty();
+    req.check("lastName", "Last name is required").notEmpty();
+    req.check("dob", "Date of birth is required").notEmpty();
+    req.check("userName", "User name is required").notEmpty();
+    //returns a promise
+    req.getValidationResult().then((error) => {
+      //if validation fails
+      if (!error.isEmpty()) {
+        let messages = error.array().map((e) => e.msg);
+        req.flash("error", messages.join(" and "));
+        req.skip = true;
+        res.locals.redirect = `/users/${req.params.id}/edit`;
+        next();
+      } else if (req.body.newPassword != req.body.confirmNewPassword) {
+        req.flash("error", "New passwords do not match");
+        req.skip = true;
+        res.locals.redirect = `/users/${req.params.id}/edit`;
+        next();
+      } else if (
+        req.body.oldPassword != "" &&
+        req.body.newPassword != "" &&
+        req.body.confirmPassword != "" &&
+        req.body.newPassword == req.body.confirmNewPassword
+      ) {
+        req.changePass = true;
+        next();
+      } else {
+        next();
+      }
+    });
+  },
+  checkChangePassword: (req, res, next) => {
+    if (req.changePass && req.user) {
+      req.user.changePassword(
+        req.body.oldPassword,
+        req.body.newPassword,
+        function (error) {
+          if (error) {
+            req.flash("error", `${error.message}`);
+            res.locals.redirect = `/users/${req.params.id}/edit`;
+            req.skip = true;
+            console.log(error);
+            next();
+          } else {
+            next();
+          }
+        }
+      );
+    } else {
+      next();
+    }
+  },
+  update: (req, res, next) => {
+    if (req.skip) return next();
+    let userId = req.params.id;
+    let updatedUser = {
+      name: {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+      },
+      location: req.body.location,
+      gender: req.body.gender,
+      dateOfBirth: req.body.dob,
+      userName: req.body.userName,
+      email: req.body.email,
+      securityQuestion: req.body.securityQuestion,
+      securityResponse: req.body.securityResponse,
+      bio: req.body.bio,
+    };
+    User.findByIdAndUpdate(userId, updatedUser)
+      .then((user) => {
+        res.locals.user = user;
+        req.flash("success", "You have successfully updated your account!");
+        res.locals.redirect = `/users/${user._id}/edit`;
+        next();
+      })
+      .catch((error) => {
+        console.log(`Error fetching user by ID: ${error.message}`);
+        next(error);
+      });
   },
   getSigninPage: (req, res) => {
     res.render("./users/login", { layout: "layout" });
@@ -138,10 +263,23 @@ module.exports = {
         console.log("promise chain complete");
       });
   },
+  delete: (req, res, next) => {
+    let userId = req.params.id;
+    User.findByIdAndRemove(userId)
+      .then(() => {
+        req.flash("success", "Your account have sucessfully been deleted!");
+        res.locals.redirect = "/";
+        next();
+      })
+      .catch((error) => {
+        console.log(`Error fetching user by ID: ${error.message}`);
+        next(error);
+      });
+  },
   logout: (req, res, next) => {
     req.logout();
     req.flash("success", "You have been logged out!");
     res.locals.redirect = "/";
     next();
-  }
+  },
 };
