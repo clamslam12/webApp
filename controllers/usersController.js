@@ -34,7 +34,7 @@ module.exports = {
         //convert Date object to year-month-day format string
         let year = user.dateOfBirth.getFullYear();
         let month = ("0" + (user.dateOfBirth.getMonth() + 1)).slice(-2);
-        let day = ("0" + user.dateOfBirth.getDate()).slice(-2);
+        let day = ("0" + (user.dateOfBirth.getDate() + 1)).slice(-2);
         let userDob = year + "-" + month + "-" + day;
         console.log(userDob, typeof userDob);
         //save result to res.locals object
