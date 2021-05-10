@@ -10,6 +10,9 @@ module.exports = {
       console.log(req.url);
       if (req.url == "/login" || req.url == "/users/new") {
         next();
+      } else if (req.url == "/home") {
+        req.flash("error", "You must log in first!");
+        res.redirect("/login");
       } else {
         res.render("about");
       }

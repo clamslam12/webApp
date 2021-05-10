@@ -35,13 +35,14 @@ db.once("open", () => {
 });
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
+
+//Middlewares; middlewares are invoked in the order they are defined
+//Global middlewares .use(); invokes on every request
 app.use(
   express.urlencoded({
     extended: false,
   })
 );
-
-//Middlewares; middlewares are invoked in the order they are defined
 router.use(methodOverride("_method", { methods: ["POST", "GET"] }));
 router.use(layouts);
 //makes public folder static (serve static files); Dont have to include /public when referencing css/js/images
