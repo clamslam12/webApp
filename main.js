@@ -82,6 +82,9 @@ router.use((req, res, next) => {
   next();
 });
 router.use(homeController.logRequestPaths);
+//if user is not logged in and use other routes, it will render about page
+//if user exits page then revisits any routes AND session not expired, the nav bar will not show sign up/log in options
+router.use(homeController.checkSession);
 
 //Routers and their middlewares (their callback functions)
 router.get("/users/new", usersController.getSignUpPage);
@@ -112,7 +115,6 @@ router.post(
 );
 router.get(
   "/home",
-  homeController.checkSession,
   homeController.trendingHashtags,
   homeController.index,
   homeController.indexView
