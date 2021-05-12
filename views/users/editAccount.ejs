@@ -1,7 +1,10 @@
 <div id="content" class="col-sm-8 col-md-6 col-lg-6">
+  <div class="box home-box header-font">Edit Account</div>
+  <div class="line"></div>
   <% if(user) { %>
+    <div class="box">
   <form method="POST" action="<%=`/users/${user._id}/update?_method=PUT`%>">
-    <h2>Edit Account:</h2>
+    <!-- <h2>Edit Account:</h2> -->
     <label for="inputFirstName">First Name</label>
     <input
       class="form-control"
@@ -140,4 +143,5 @@
   </form>
   <% } %>
   <div class="margin-bottom"></div>
+</div>
 </div>
