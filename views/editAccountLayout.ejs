@@ -61,14 +61,6 @@
                         </div>
                 </li>
 
-                <li>
-                    <div class="col-sm-12">
-                        <!-- <img src="images/message.png" class="symbol"> -->
-                        <p class="header-font centerText">
-                            Message
-                        </p>                   
-                     </div>
-                </li>
 
                 <li>
                     <div class="col-sm-12">
@@ -81,12 +73,6 @@
                     </div>
                 </li>
 
-                <li>
-                    <div class="col-sm-12">
-                        <!-- <img src="images/more.png" class="symbol"> -->
-                        <p class="header-font centerText">More</p>
-                    </div>
-                </li>
                 <li>
                   <div class="col-sm-12">
                     <!-- <img src="images/profile.png" class="symbol"> -->
@@ -141,10 +127,20 @@
            <% } %>
         <% } %>
         <%- body %>
-
-          <div class="sidebar hiddenBar" class="col-sm-4">
+       
+        <div class="sidebar hiddenBar" class="col-sm-4">
             <div class="box home-box header-font">Trending</div>
             <div class="line"></div>
+
+            <div class="box">
+                <div>
+                    <dl class="tag">
+                    <% hashtags.forEach(tag => { %>
+                    <dt><%=tag.word %></dt>
+                    <% }); %>
+                    </dl>
+                </div>
+            </div>
             
             <div class="line"></div>
             <div class="box">

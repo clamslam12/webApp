@@ -95,7 +95,7 @@ router.post(
   usersController.create,
   usersController.redirectView
 );
-router.get("/users/:id/edit", usersController.edit);
+router.get("/users/:id/edit", homeController.trendingHashtags, usersController.edit);
 router.put(
   "/users/:id/update",
   usersController.updateValidate,
