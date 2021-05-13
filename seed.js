@@ -4,6 +4,7 @@ const { Promise } = require("bluebird");
 const mongoose = require("mongoose"),
   User = require("./models/user"),
   Post = require("./models/post"),
+  Hashtag = require("./models/hashtag"),
   passport = require("passport");
 
 //initiate connection
@@ -58,6 +59,12 @@ let posts = [
     userName: "ejohn",
     fullName: "Elvis John",
   },
+  {
+    post: "I'm Long. I'm testing the app",
+    userEmail: "long@sen.com",
+    userName: "LongSen",
+    fullName: "Long Sen",
+  },
 ];
 
 let users = [
@@ -100,6 +107,19 @@ let users = [
     bio: "Hello this is elvis john bio",
     numberOfPosts: 2,
   },
+  {
+    name: { firstName: "Long", lastName: "Sen" },
+    location: "Denver",
+    gender: "male",
+    dateOfBirth: "1999-12-29",
+    email: "long@sen.com",
+    userName: "LongSen",
+    password: "Admin123",
+    securityQuestion: "What was your high schools mascot?",
+    securityResponse: "luna",
+    bio: "Hello this is Long Sen bio",
+    numberOfPosts: 1,
+  },
 ];
 
 //delete all documents in a collection
@@ -115,6 +135,11 @@ Post.deleteMany()
     console.log("Post data is empty!");
   });
 
+Hashtag.deleteMany()
+.exec()
+.then(() => {
+  console.log("Hashtag data is empty!");
+});;
 let commands = [];
 //for each user, push User.create commands in commands array
 //User.create is async
