@@ -2,7 +2,7 @@
 
 const express = require("express"),
   app = express(),
-  router = express.Router(),
+  router = require("./routes/index"),
   layouts = require("express-ejs-layouts"),
   mongoose = require("mongoose"),
   methodOverride = require("method-override"),
@@ -43,38 +43,38 @@ app.use(
     extended: false,
   })
 );
-router.use(methodOverride("_method", { methods: ["POST", "GET"] }));
-router.use(layouts);
+app.use(methodOverride("_method", { methods: ["POST", "GET"] }));
+app.use(layouts);
 //makes public folder static (serve static files); Dont have to include /public when referencing css/js/images
-router.use(express.static("public"));
-router.use(express.json());
+app.use(express.static("public"));
+app.use(express.json());
 
 //use session management through cookies
-router.use(cookieParser("iMedia_passcode"));
-router.use(
+app.use(cookieParser("iMedia_passcode"));
+app.use(
   expressSession({
     secret: "iMedia_passcode",
     cookie: {
-      maxAge: 360000,
+      maxAge: 1800000,
     },
     resave: false,
     saveUninitialized: false,
   })
 );
 //express validator setup
-router.use(expressValidator());
+app.use(expressValidator());
 //connect flash messages setup
-router.use(connectFlash());
+app.use(connectFlash());
 //Passport setup
-router.use(passport.initialize());
-router.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //save flash messages from req.flash(), set loggedIn flag/var, and set current user
 //used on every request
-router.use((req, res, next) => {
+app.use((req, res, next) => {
   res.locals.flashMessages = req.flash(); //key/value pairs
   res.locals.loggedIn = req.isAuthenticated();
   res.locals.user = req.user;
@@ -82,50 +82,13 @@ router.use((req, res, next) => {
   // console.log(`Get herer ${req.user}`)
   next();
 });
-router.use(homeController.logRequestPaths);
+app.use(homeController.logRequestPaths);
 //if user is not logged in and use other routes, it will render about page
 //if user exits page then revisits any routes AND session not expired, the nav bar will not show sign up/log in options
-router.use(homeController.checkSession);
+app.use(homeController.checkSession);
 
 //Routers and their middlewares (their callback functions)
-router.get("/users/new", usersController.getSignUpPage);
-router.post(
-  "/users/create",
-  usersController.validate,
-  usersController.create,
-  usersController.redirectView
-);
-router.get("/users/:id/edit", homeController.trendingHashtags, usersController.edit);
-router.put(
-  "/users/:id/update",
-  usersController.updateValidate,
-  usersController.checkChangePassword,
-  usersController.update,
-  usersController.redirectView
-);
-router.delete(
-  "/users/:id/delete",
-  usersController.delete,
-  usersController.redirectView
-);
-router.get("/login", usersController.getSigninPage);
-router.post(
-  "/login",
-  usersController.authenticate,
-  usersController.redirectView
-);
-router.get(
-  "/home",
-  homeController.trendingHashtags,
-  homeController.index,
-  homeController.indexView
-);
-router.get(
-  "/logout",
-  homeController.trendingHashtags,
-  usersController.logout,
-  usersController.redirectView
-);
+
 // router.get("/message", homeController.getMessagePage);
 // router.get(
 //   "/",
@@ -133,69 +96,13 @@ router.get(
 // homeController.index,
 // homeController.indexView
 // );
-router.get("/about", homeController.getAboutPage);
-router.post(
-  "/home",
-  homeController.createPost,
-  homeController.trendingHashtags,
-  homeController.index,
-  homeController.indexView
-);
-router.get(
-  "/home/:id",
-  homeController.visit,
-  homeController.trendingHashtags,
-  homeController.index,
-  homeController.showOther
-);
-router.put(
-  "/home/:id",
-  homeController.trendingHashtags,
-  homeController.follow,
-  homeController.redirectView
-);
-router.delete(
-  "/post/:id",
-  homeController.trendingHashtags,
-  homeController.delete,
-  homeController.index,
-  homeController.indexView
-);
-router.get("/explore", homeController.trendingHashtags, homeController.explore);
-router.put(
-  "/explore/:id",
-  homeController.trendingHashtags,
-  homeController.follow,
-  homeController.redirectView
-);
-
-router.get(
-  "/profile/me",
-  homeController.trendingHashtags,
-  homeController.profile
-);
-router.delete(
-  "/mypost/:id",
-  homeController.trendingHashtags,
-  homeController.delete,
-  homeController.profile
-);
-
-router.get(
-  "/notification",
-  homeController.trendingHashtags,
-  homeController.notification
-);
-
-router.get("/", homeController.trendingHashtags, homeController.getAboutPage);
 
 // router.get("/", homeController.index, homeController.indexView);
-//Error handling middlewares
-router.use(errorController.logErrors);
-router.use(errorController.pageNotFound);
-router.use(errorController.serverError);
 
 app.use("/", router);
+app.use(errorController.pageNotFound);
+app.use(errorController.serverError);
+
 //starting server
 app.listen(app.get("port"), () => {
   console.log(`Server is running on port ${app.get("port")}`);

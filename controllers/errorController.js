@@ -3,7 +3,7 @@
 const httpStatus = require("http-status-codes");
 //log errors
 exports.logErrors = (error, req, res, next) => {
-  console.log(error.stack);
+  console.log('error detected', error.stack);
   next(error);
 };
 //404 error

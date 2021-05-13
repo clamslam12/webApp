@@ -8,7 +8,13 @@ module.exports = {
   checkSession: (req, res, next) => {
     if (!res.locals.loggedIn && !res.locals.user) {
       console.log(req.url);
-      if (req.url == "/login" || req.url == "/users/new") {
+      if (
+        req.url == "/login" ||
+        req.url == "/users/new" ||
+        req.url == "/" ||
+        req.url == "/about" ||
+        req.url == "/users/create"
+      ) {
         next();
       } else if (req.url == "/home") {
         req.flash("error", "You must log in first!");
@@ -21,6 +27,7 @@ module.exports = {
     }
   },
   index: (req, res, next) => {
+    
     Post.find()
       .then((posts) => {
         res.locals.posts = posts.reverse();

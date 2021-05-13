@@ -102,7 +102,8 @@
       id="mySecurityQuestion"
       class="form-control"
     >
-      <option value="What was your mothers maiden name?">
+    <% if(user.securityQuestion == "What was your mothers maiden name?") { %>
+      <option value="What was your mothers maiden name?" selected>
         What was your mother's maiden name?
       </option>
       <option value="What was your childhood nickname?">
@@ -111,6 +112,29 @@
       <option value="What was your high schools mascot?">
         What was your high school's mascot?
       </option>
+   <% } else if(user.securityQuestion == "What was your childhood nickname?") { %>
+    <option value="What was your mothers maiden name?" >
+      What was your mother's maiden name?
+    </option>
+    <option value="What was your childhood nickname?" selected>
+      What was your childhood nickname?
+    </option>
+    <option value="What was your high schools mascot?">
+      What was your high school's mascot?
+    </option>
+  <% } else{ %>
+    <option value="What was your mothers maiden name?" >
+      What was your mother's maiden name?
+    </option>
+    <option value="What was your childhood nickname?">
+      What was your childhood nickname?
+    </option>
+    <option value="What was your high schools mascot?" selected>
+      What was your high school's mascot?
+    </option>
+
+  <% } %>
+      
     </select>
     <label for="inputResponse">Security Response</label>
     <input
