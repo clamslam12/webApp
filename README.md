@@ -16,6 +16,8 @@ Final Project - All requirements working
 
 Minh Durbin: About page, signup and client side validation using Vue.js, login and validation, sessions with validations and dynamic rendering of navigation, edit account with server-side validation, error messages and flash messages, delete account, custom error routes for 404 and 500 errors, routes management through routes directory, user in seed.js
 
+Long Sen: This web site is server-side populated. I'm responsible for home page, explore page, notification page, profile page, and updating trending hashtag.
+
 Assignment 4 - All requirements working
 
 Directions: Database is locally hosted at mongodb://localhost:27017/iMedia . You can download MongoDB Compass and connect to it. The database name is "iMedia" and the collections are "users" and "posts".
